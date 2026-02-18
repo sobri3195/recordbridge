@@ -9,7 +9,7 @@ Production-quality demo web app for a **schema-less EHR/SIMRS translator** that 
 
 ## Feature Design Documents
 
-This repository includes comprehensive design documents for 10 planned features in the `/docs/features` directory:
+This repository includes comprehensive design documents for 11 planned features in the `/docs/features` directory:
 
 1. **[Smart Import Wizard](./docs/features/01-smart-import-wizard.md)** - CSV/JSON/Excel import with auto-detection
 2. **[AI Mapping Assistant](./docs/features/02-ai-mapping-assistant.md)** - AI-powered field mapping with confidence scores
@@ -21,6 +21,7 @@ This repository includes comprehensive design documents for 10 planned features 
 8. **[Monitoring & Alerting](./docs/features/08-monitoring-alerting.md)** - System health monitoring and alerts
 9. **[Guided Onboarding UX](./docs/features/09-guided-onboarding-ux.md)** - Interactive user onboarding experience
 10. **[Insight & Recommendation Panel](./docs/features/10-insight-recommendation-panel.md)** - AI-driven optimization recommendations
+11. **[Universal SIMRS Connector](./docs/features/11-universal-simrs-connector.md)** - Middleware interoperability layer for connecting heterogeneous SIMRS systems
 
 See [Feature Design Index](./docs/features/README.md) for complete overview.
 
