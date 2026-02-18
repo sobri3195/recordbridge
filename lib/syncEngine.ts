@@ -255,7 +255,7 @@ export class RealTimeSyncEngine {
 
     const allKeys = new Set([...Object.keys(sourceData), ...Object.keys(targetData)]);
 
-    for (const key of allKeys) {
+    for (const key of Array.from(allKeys)) {
       const sourceValue = sourceData[key];
       const targetValue = targetData[key];
 

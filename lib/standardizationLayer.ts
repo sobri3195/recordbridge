@@ -97,6 +97,20 @@ export interface FHIRMedication extends FHIRResource {
   };
 }
 
+export interface FHIRAllergyIntolerance extends FHIRResource {
+  resourceType: 'AllergyIntolerance';
+  clinicalStatus: StandardizedCode;
+  verificationStatus?: StandardizedCode;
+  type?: string;
+  code: {
+    coding: StandardizedCode[];
+  };
+  patient: { reference: string };
+  reaction?: Array<{
+    manifestation: Array<{ text: string }>;
+  }>;
+}
+
 const ICD_10_MAPPING: Record<string, { code: string; display: string }> = {
   'diabetes': { code: 'E11.9', display: 'Type 2 diabetes mellitus without complications' },
   'type 2 diabetes mellitus': { code: 'E11.9', display: 'Type 2 diabetes mellitus without complications' },
@@ -392,7 +406,7 @@ export class NationalHealthStandardizationLayer {
     };
   }
 
-  allergyToFHIR(allergy: Allergy, patientId: string): FHIRResource {
+  allergyToFHIR(allergy: Allergy, patientId: string): FHIRAllergyIntolerance {
     const snomed = this.toSNOMED(allergy.substance);
     const coding: StandardizedCode[] = [];
     if (snomed) coding.push(snomed);
@@ -419,7 +433,13 @@ export class NationalHealthStandardizationLayer {
         display: 'Confirmed'
       },
       type: 'allergy',
-      category: ['medication'],
+      category: [{
+        coding: [{
+          code: 'medication',
+          system: 'http://terminology.hl7.org/CodeSystem/allergy-intolerance-category',
+          display: 'Medication'
+        }]
+      }],
       code: {
         coding
       },
