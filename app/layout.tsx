@@ -1,11 +1,16 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Logo from '@/components/Logo';
 
 export const metadata: Metadata = {
   title: 'RecordBridge Demo - Schema-less EHR/SIMRS Translator',
   description: 'Powerful healthcare data interoperability for Indonesia. Connect EHR, SIMRS, BPJS, SATUSEHAT data into unified patient records.',
   keywords: 'EHR, SIMRS, healthcare, Indonesia, BPJS, SATUSEHAT, interoperability, medical records',
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -14,9 +19,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-lg shadow-sm">
           <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-            <Link href="/" className="group flex items-center gap-2 text-xl font-bold text-blue-600">
-              <span className="text-2xl">🏥</span>
-              <span className="group-hover:text-blue-700 transition-colors">RecordBridge</span>
+            <Link href="/" className="group flex items-center gap-2">
+              <Logo size="sm" variant="full" className="group-hover:opacity-90 transition-opacity" />
               <span className="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">Demo</span>
             </Link>
             <div className="hidden gap-6 md:flex">
@@ -52,8 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-2xl">🏥</span>
-                  <span className="text-lg font-bold text-slate-800">RecordBridge</span>
+                  <Logo size="sm" variant="full" />
                 </div>
                 <p className="mt-2 text-sm text-slate-600">
                   Schema-less EHR/SIMRS translator untuk integritas data kesehatan Indonesia.

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="32" fill="#2563EB"/>
+
+  <!-- Cross / plus symbol (medical) -->
+  <rect x="26" y="12" width="12" height="40" rx="3" fill="white"/>
+  <rect x="12" y="26" width="40" height="12" rx="3" fill="white"/>
+
+  <!-- Bridge arc on top - representing data bridge -->
+  <path d="M18 26 Q32 10 46 26" stroke="#93C5FD" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>
