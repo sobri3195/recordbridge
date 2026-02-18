@@ -1,6 +1,6 @@
 # RecordBridge Feature Design Documents
 
-Dokumen ini berisi desain detail untuk 10 fitur utama RecordBridge—platform integrasi data schema-less untuk EHR/SIMRS.
+Dokumen ini berisi desain detail untuk 11 fitur utama RecordBridge—platform integrasi data schema-less untuk EHR/SIMRS.
 
 ---
 
@@ -148,6 +148,21 @@ Dokumen ini berisi desain detail untuk 10 fitur utama RecordBridge—platform in
 
 ---
 
+### 11. [Universal SIMRS Connector](./11-universal-simrs-connector.md)
+**Middleware interoperability layer** untuk menghubungkan berbagai sistem SIMRS yang berbeda.
+
+**Fitur Utama:**
+- Database adapter (MySQL, PostgreSQL, SQL Server, Oracle)
+- API adapter (REST, GraphQL, FHIR R4)
+- Real-time sync engine (event-driven, CDC, polling)
+- Universal Health API (REST, GraphQL, FHIR)
+- Cross-facility patient matching
+- SATUSEHAT Kemenkes compliance
+
+**Target:** Menghubungkan 230+ SIMRS Indonesia menjadi satu ekosistem terintegrasi.
+
+---
+
 ## 🏗️ Integrasi Arsitektur
 
 ```
@@ -155,6 +170,21 @@ Dokumen ini berisi desain detail untuk 10 fitur utama RecordBridge—platform in
 │                      RECORD BRIDGE PLATFORM                     │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │         UNIVERSAL SIMRS CONNECTOR (NEW)                   │  │
+│  │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  │  │
+│  │  │ Database │  │   API    │  │   FHIR   │  │  File    │  │  │
+│  │  │ Adapter  │  │ Adapter  │  │ Adapter  │  │ Adapter  │  │  │
+│  │  └────┬─────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘  │  │
+│  │       └─────────────┴─────────────┴─────────────┘        │  │
+│  │                              │                            │  │
+│  │                              ▼                            │  │
+│  │              ┌─────────────────────────┐                  │  │
+│  │              │   Real-time Sync Engine │                  │  │
+│  │              └─────────────────────────┘                  │  │
+│  └──────────────────────────────┬─────────────────────────────┘  │
+│                                 │                               │
+│                                 ▼                               │
 │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐             │
 │  │   Smart     │  │     AI      │  │   Quality   │             │
 │  │   Import    │──│   Mapping   │──│    Gate     │             │
@@ -206,6 +236,13 @@ Dokumen ini berisi desain detail untuk 10 fitur utama RecordBridge—platform in
 8. Real-time Collaboration
 9. Monitoring & Alerting
 10. Insight & Recommendation Panel
+
+### Phase 4 (Infrastructure - Month 7-8)
+11. Universal SIMRS Connector
+    - Database adapters (MySQL, PostgreSQL, SQL Server)
+    - API adapters (REST, FHIR)
+    - Real-time sync engine
+    - Universal Health API
 
 ---
 
