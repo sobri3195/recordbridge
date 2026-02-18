@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+  <!-- Icon: blue circle with medical cross -->
+  <circle cx="24" cy="24" r="22" fill="#2563EB"/>
+  <rect x="19" y="10" width="10" height="28" rx="2.5" fill="white"/>
+  <rect x="10" y="19" width="28" height="10" rx="2.5" fill="white"/>
+  <!-- Bridge arc above cross -->
+  <path d="M14 19 Q24 8 34 19" stroke="#93C5FD" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Wordmark -->
+  <text x="54" y="30" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-weight="700" font-size="20" fill="#1E3A5F">Record</text>
+  <text x="121" y="30" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-weight="700" font-size="20" fill="#2563EB">Bridge</text>
+</svg>
