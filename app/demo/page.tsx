@@ -1,12 +1,15 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { AIClinicalSummary } from '@/components/AIClinicalSummary';
 import { AuditLog } from '@/components/AuditLog';
+import { BilingualTerms } from '@/components/BilingualTerms';
 import { CanonicalSummary } from '@/components/CanonicalSummary';
 import { ConflictsPanel } from '@/components/ConflictsPanel';
 import { ExportPanel } from '@/components/ExportPanel';
 import { MappingTable } from '@/components/MappingTable';
 import { RawViewer } from '@/components/RawViewer';
+import { SourceProvenance } from '@/components/SourceProvenance';
 import { Timeline } from '@/components/Timeline';
 import { resolveConflict, runTranslation } from '@/lib/mappingEngine';
 import { CanonicalRecord, SourceSystem } from '@/lib/types';
@@ -45,6 +48,9 @@ export default function DemoPage() {
         </p>
       </div>
 
+      {/* AI Clinical Summary - New Feature */}
+      <AIClinicalSummary record={record} />
+
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
         <RawViewer
           activeTab={activeTab}
@@ -56,6 +62,9 @@ export default function DemoPage() {
         />
 
         <div className="space-y-5">
+          {/* Source Provenance Visual - New Feature */}
+          <SourceProvenance record={record} />
+          
           <CanonicalSummary record={record} />
           <MappingTable record={record} showProvenance={showProvenance} />
 
@@ -111,6 +120,9 @@ export default function DemoPage() {
             }}
           />
           <AuditLog record={record} />
+          
+          {/* Bilingual Terminology - New Feature */}
+          <BilingualTerms />
         </div>
       </div>
     </div>

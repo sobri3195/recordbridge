@@ -1,0 +1,206 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "RecordBridge" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e5]:
+        - link "Demo" [ref=e6] [cursor=pointer]:
+          - /url: /demo
+        - link "How it works" [ref=e7] [cursor=pointer]:
+          - /url: /how-it-works
+  - main [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e11]:
+        - heading "Healthcare Interoperability Engine" [level=1] [ref=e12]
+        - paragraph [ref=e13]:
+          - text: Bukan SIMRS. Tapi
+          - strong [ref=e14]: layer di atas SIMRS
+          - text: yang menghubungkan sistem kesehatan dengan schema-less translation dan AI clinical summary.
+        - generic [ref=e15]:
+          - link "🚀 Lihat Demo" [ref=e16] [cursor=pointer]:
+            - /url: /demo
+          - link "Pelajari Cara Kerja" [ref=e17] [cursor=pointer]:
+            - /url: /how-it-works
+        - generic [ref=e18]:
+          - generic [ref=e19]: ✅ Schema-less Mapping
+          - generic [ref=e20]: ✅ Bilingual ID/EN
+          - generic [ref=e21]: ✅ AI Clinical Summary
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - heading "Masalah yang Dipecahkan" [level=2] [ref=e24]
+          - paragraph [ref=e25]: Indonesia memiliki ribuan fasilitas kesehatan dengan sistem yang terfragmentasi
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - generic [ref=e28]: 🏥
+            - heading "Sistem Terpisah" [level=3] [ref=e29]
+            - paragraph [ref=e30]: SIMRS, EHR, dan klinik menggunakan format data yang berbeda-beda
+          - generic [ref=e31]:
+            - generic [ref=e32]: 🔄
+            - heading "Duplikasi Data" [level=3] [ref=e33]
+            - paragraph [ref=e34]: Pasien direkam berulang kali di setiap fasilitas kesehatan
+          - generic [ref=e35]:
+            - generic [ref=e36]: ⚠️
+            - heading "Konflik Informasi" [level=3] [ref=e37]
+            - paragraph [ref=e38]: Data yang bertentangan antar sistem menyebabkan kebingungan klinis
+          - generic [ref=e39]:
+            - generic [ref=e40]: ⏱️
+            - heading "Waktu Terbuang" [level=3] [ref=e41]
+            - paragraph [ref=e42]: Dokter menghabiskan waktu untuk rekonsiliasi manual data pasien
+      - generic [ref=e43]:
+        - generic [ref=e44]:
+          - heading "Solusi RecordBridge" [level=2] [ref=e45]
+          - paragraph [ref=e46]: Interoperabilitas tanpa mengganti sistem yang ada
+        - generic [ref=e47]:
+          - generic [ref=e48]:
+            - generic [ref=e49]: 🤖
+            - generic [ref=e50]:
+              - heading "AI Clinical Summary" [level=3] [ref=e51]
+              - paragraph [ref=e52]: Ringkasan klinis otomatis dengan analisis tren dan risk flags
+          - generic [ref=e53]:
+            - generic [ref=e54]: 🌐
+            - generic [ref=e55]:
+              - heading "Bilingual Support" [level=3] [ref=e56]
+              - paragraph [ref=e57]: Pemetaan otomatis Bahasa Indonesia ↔ Inggris untuk istilah medis
+          - generic [ref=e58]:
+            - generic [ref=e59]: 🔗
+            - generic [ref=e60]:
+              - heading "Schema-less Translation" [level=3] [ref=e61]
+              - paragraph [ref=e62]: Tidak perlu standardisasi format - data dipetakan secara otomatis
+          - generic [ref=e63]:
+            - generic [ref=e64]: ✅
+            - generic [ref=e65]:
+              - heading "Verified Provenance" [level=3] [ref=e66]
+              - paragraph [ref=e67]: Setiap data memiliki jejak asal untuk audit dan verifikasi
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - heading "Fitur Utama" [level=2] [ref=e70]
+          - paragraph [ref=e71]: Demo interaktif dengan data pasien nyata dari 3 sumber berbeda
+        - generic [ref=e72]:
+          - article [ref=e73]:
+            - heading "Instant Schema-less Mapping (Zero Setup)" [level=2] [ref=e74]
+            - paragraph [ref=e75]: Auto-map fields like BP/Tensi and normalize units instantly—no waiting for perfect standards.
+            - link "Lihat di demo →" [ref=e76] [cursor=pointer]:
+              - /url: /demo#mapping
+          - article [ref=e77]:
+            - heading "Unified Longitudinal Timeline (Across Settings)" [level=2] [ref=e78]
+            - paragraph [ref=e79]: Merge encounters, labs, meds, diagnoses into one chronological story across facilities.
+            - link "Lihat di demo →" [ref=e80] [cursor=pointer]:
+              - /url: /demo#timeline
+          - article [ref=e81]:
+            - heading "Conflict Detection + One-click Reconciliation" [level=2] [ref=e82]
+            - paragraph [ref=e83]: Surface contradictions and resolve with a clinician-friendly workflow and audit trail.
+            - link "Lihat di demo →" [ref=e84] [cursor=pointer]:
+              - /url: /demo#conflicts
+          - article [ref=e85]:
+            - heading "Provenance, Trust, and Auditability" [level=2] [ref=e86]
+            - paragraph [ref=e87]: "Every datapoint is traceable: source system, timestamp, mapping confidence, and audit history."
+            - link "Lihat di demo →" [ref=e88] [cursor=pointer]:
+              - /url: /demo#provenance
+          - article [ref=e89]:
+            - heading "Referral Packet / Handover Export" [level=2] [ref=e90]
+            - paragraph [ref=e91]: Generate a clean referral summary for transitions of care in seconds.
+            - link "Lihat di demo →" [ref=e92] [cursor=pointer]:
+              - /url: /demo#export
+      - generic [ref=e93]:
+        - generic [ref=e94]:
+          - heading "Use Cases Indonesia" [level=2] [ref=e95]
+          - paragraph [ref=e96]: Target pasar dan implementasi untuk ekosistem kesehatan Indonesia
+        - generic [ref=e97]:
+          - generic [ref=e98]:
+            - generic [ref=e100]:
+              - generic [ref=e101]: 🏛️
+              - generic [ref=e102]:
+                - heading "RSUD & Faskes Tingkat 1" [level=3] [ref=e103]
+                - text: Dinas Kesehatan
+            - paragraph [ref=e104]: Integrasi data antara Puskesmas, Klinik, dan Rumah Sakit dalam satu wilayah. Rujukan pasien dengan riwayat lengkap.
+          - generic [ref=e105]:
+            - generic [ref=e107]:
+              - generic [ref=e108]: 🏥
+              - generic [ref=e109]:
+                - heading "RS Swasta & Klinik" [level=3] [ref=e110]
+                - text: Group Rumah Sakit
+            - paragraph [ref=e111]: Menghubungkan sistem lama (legacy) dengan EHR modern tanpa migrasi data yang mahal. Interoperabilitas antar cabang.
+          - generic [ref=e112]:
+            - generic [ref=e114]:
+              - generic [ref=e115]: 🚁
+              - generic [ref=e116]:
+                - heading "Medical Evacuation" [level=3] [ref=e117]
+                - text: TNI/Polri & SAR
+            - paragraph [ref=e118]: Ringkasan medis darurat yang komprehensif untuk militer, tim SAR, dan evakuasi medis dengan data dari berbagai sumber.
+          - generic [ref=e119]:
+            - generic [ref=e121]:
+              - generic [ref=e122]: 📱
+              - generic [ref=e123]:
+                - heading "Telemedicine & EHR" [level=3] [ref=e124]
+                - text: Platform Kesehatan Digital
+            - paragraph [ref=e125]: Integrasi data dari aplikasi telemedicine ke sistem EHR utama. Konsultasi online dengan akses riwayat lengkap.
+      - generic [ref=e126]:
+        - generic [ref=e127]:
+          - heading "Keamanan & Compliance" [level=2] [ref=e128]
+          - paragraph [ref=e129]: Standar keamanan tertinggi untuk data kesehatan sensitif
+        - generic [ref=e130]:
+          - generic [ref=e131]:
+            - generic [ref=e132]: 🔐
+            - heading "End-to-End Encryption" [level=3] [ref=e133]
+            - paragraph [ref=e134]: Semua data dienkripsi saat transit dan istirahat menggunakan AES-256
+          - generic [ref=e135]:
+            - generic [ref=e136]: 📋
+            - heading "Audit Trail Lengkap" [level=3] [ref=e137]
+            - paragraph [ref=e138]: Setiap akses dan modifikasi tercatat untuk compliance dan forensik
+          - generic [ref=e139]:
+            - generic [ref=e140]: 🛡️
+            - heading "HIPAA & PDPO Compliant" [level=3] [ref=e141]
+            - paragraph [ref=e142]: Memenuhi standar perlindungan data kesehatan internasional dan Indonesia
+          - generic [ref=e143]:
+            - generic [ref=e144]: 🔍
+            - heading "Data Provenance" [level=3] [ref=e145]
+            - paragraph [ref=e146]: Jejak asal data untuk verifikasi keaslian dan deteksi manipulasi
+      - generic [ref=e147]:
+        - generic [ref=e148]:
+          - heading "Arsitektur RecordBridge" [level=2] [ref=e149]
+          - paragraph [ref=e150]: Layer interoperability di atas sistem yang sudah ada
+        - generic [ref=e151]:
+          - generic [ref=e152]:
+            - generic [ref=e153]:
+              - heading "Presentation" [level=3] [ref=e154]
+              - generic [ref=e155]: Layer 4
+            - generic [ref=e156]:
+              - generic [ref=e157]: AI Clinical Summary
+              - generic [ref=e158]: Unified Timeline
+              - generic [ref=e159]: Conflict Resolution UI
+          - generic [ref=e160]:
+            - generic [ref=e161]:
+              - heading "Translation Engine" [level=3] [ref=e162]
+              - generic [ref=e163]: Layer 3
+            - generic [ref=e164]:
+              - generic [ref=e165]: Schema Mapper
+              - generic [ref=e166]: Bilingual NLP
+              - generic [ref=e167]: Confidence Scoring
+          - generic [ref=e168]:
+            - generic [ref=e169]:
+              - heading "Data Fusion" [level=3] [ref=e170]
+              - generic [ref=e171]: Layer 2
+            - generic [ref=e172]:
+              - generic [ref=e173]: Entity Resolution
+              - generic [ref=e174]: Conflict Detection
+              - generic [ref=e175]: Timeline Builder
+          - generic [ref=e176]:
+            - generic [ref=e177]:
+              - heading "Connectors" [level=3] [ref=e178]
+              - generic [ref=e179]: Layer 1
+            - generic [ref=e180]:
+              - generic [ref=e181]: HL7 FHIR
+              - generic [ref=e182]: SIMRS Adapter
+              - generic [ref=e183]: REST API
+              - generic [ref=e184]: DICOM
+        - paragraph [ref=e186]: ↓ EHR / SIMRS / Klinik / Pharmacy (Existing Systems)
+      - generic [ref=e187]:
+        - heading "Siap untuk Interoperabilitas?" [level=2] [ref=e188]
+        - paragraph [ref=e189]: Jadilah bagian dari revolusi kesehatan digital Indonesia. Hubungkan sistem Anda tanpa mengganti infrastruktur yang ada.
+        - generic [ref=e190]:
+          - link "🚀 Coba Demo Sekarang" [ref=e191] [cursor=pointer]:
+            - /url: /demo
+          - link "📚 Dokumentasi" [ref=e192] [cursor=pointer]:
+            - /url: /how-it-works
+        - paragraph [ref=e193]: "Cocok untuk: RSUD, RS Swasta, Klinik, TNI/Polri Medical Unit, Platform Telemedicine"
+  - alert [ref=e194]
