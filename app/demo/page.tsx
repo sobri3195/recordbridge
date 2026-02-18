@@ -33,19 +33,24 @@ export default function DemoPage() {
   const diagnosisEntities = useMemo(() => record?.conditions ?? [], [record]);
 
   return (
-    <div className="space-y-5">
-      <div className="card">
-        <h1 className="text-2xl font-bold">Schema-less EHR/SIMRS Translator Demo</h1>
-        <p className="text-sm text-slate-600">Feature Tour: 
-          <a href="#mapping" className="ml-2 text-blue-600">#mapping</a>
-          <a href="#timeline" className="ml-2 text-blue-600">#timeline</a>
-          <a href="#conflicts" className="ml-2 text-blue-600">#conflicts</a>
-          <a href="#provenance" className="ml-2 text-blue-600">#provenance</a>
-          <a href="#export" className="ml-2 text-blue-600">#export</a>
-        </p>
+    <div className="space-y-6">
+      <div className="card bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">🩺 Schema-less EHR/SIMRS Translator Demo</h1>
+            <p className="mt-1 text-blue-100">Feature Tour: mapping • timeline • conflicts • provenance • export</p>
+          </div>
+          <div className="hidden flex-wrap gap-2 md:flex">
+            {(['mapping', 'timeline', 'conflicts', 'provenance', 'export'] as const).map((f) => (
+              <a key={f} href={`#${f}`} className="rounded-full bg-white/20 px-3 py-1 text-xs font-medium text-white hover:bg-white/30">
+                #{f}
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <RawViewer
           activeTab={activeTab}
           setActiveTab={setActiveTab}
@@ -55,19 +60,36 @@ export default function DemoPage() {
           loading={loading}
         />
 
-        <div className="space-y-5">
+        <div className="space-y-6">
           <CanonicalSummary record={record} />
           <MappingTable record={record} showProvenance={showProvenance} />
 
           <section className="card">
-            <h3 className="mb-2 text-lg font-semibold">Diagnosis Normalization</h3>
+            <div className="mb-3 flex items-center gap-2">
+              <h3 className="text-lg font-semibold">🩺 Diagnosis Normalization</h3>
+              <span className="rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-700">
+                {diagnosisEntities.length} diagnoses
+              </span>
+            </div>
             <p className="mb-3 text-sm text-slate-600">Extracted entities from ICD and free-text (e.g., diabetes, kencing manis) are normalized to canonical conditions.</p>
-            {!record ? <p className="text-sm text-slate-500">No diagnosis extraction yet.</p> : (
-              <div className="space-y-2 text-sm">
+            {!record ? <p className="rounded-lg bg-slate-50 p-4 text-center text-sm text-slate-500">No diagnosis extraction yet.</p> : (
+              <div className="space-y-2">
                 {diagnosisEntities.map((d) => (
-                  <div key={d.id} className="rounded border p-2">
-                    <p><strong>{d.canonicalName}</strong> {d.code ? `(${d.code})` : ''}</p>
-                    <p className="text-xs text-slate-600">Source entity: “{d.sourceText}” · Confidence {Math.round(d.confidence * 100)}%</p>
+                  <div key={d.id} className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+                    <div className="flex items-center justify-between">
+                      <p className="font-semibold text-slate-800">{d.canonicalName}</p>
+                      {d.code && (
+                        <span className="rounded bg-blue-100 px-2 py-0.5 text-xs font-mono text-blue-700">
+                          {d.code}
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-1 text-xs text-slate-600">Source entity: "{d.sourceText}"</p>
+                    <p className="mt-1 text-xs">
+                      <span className={`font-medium ${d.confidence >= 0.75 ? 'text-emerald-600' : 'text-amber-600'}`}>
+                        Confidence: {Math.round(d.confidence * 100)}%
+                      </span>
+                    </p>
                   </div>
                 ))}
               </div>
@@ -83,15 +105,21 @@ export default function DemoPage() {
           />
 
           <section id="provenance" className="card">
-            <h3 className="mb-2 text-lg font-semibold">Provenance & Trust</h3>
-            <label className="inline-flex items-center gap-2 text-sm">
-              <input type="checkbox" checked={showProvenance} onChange={(e) => setShowProvenance(e.target.checked)} />
-              Show provenance inline
+            <h3 className="mb-3 text-lg font-semibold">📋 Provenance & Trust</h3>
+            <label className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-slate-100 px-4 py-2 text-sm">
+              <input 
+                type="checkbox" 
+                checked={showProvenance} 
+                onChange={(e) => setShowProvenance(e.target.checked)} 
+                className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+              />
+              <span>Show provenance inline</span>
             </label>
-            <p className="mt-2 text-xs text-slate-500">When enabled, source system, timestamp, and confidence appear across mappings/timeline to support traceability.</p>
+            <p className="mt-3 text-xs text-slate-500">When enabled, source system, timestamp, and confidence appear across mappings/timeline to support traceability. Every datapoint can be traced back to its origin.</p>
           </section>
 
           <Timeline record={record} showProvenance={showProvenance} />
+          
           <ExportPanel
             record={record}
             onExport={() => {

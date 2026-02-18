@@ -1,36 +1,147 @@
+import Link from 'next/link';
+
 const steps = [
-  { title: 'Ingest', text: 'Pull records from EHR A, SIMRS B, and Clinic C with heterogeneous schemas.' },
-  { title: 'Normalize', text: 'Deterministic rules map BP/Tensi, ICD/free-text diagnoses, meds, and allergy terms.' },
-  { title: 'Merge', text: 'Canonical patient profile and longitudinal timeline are assembled across settings.' },
-  { title: 'Conflicts', text: 'Disagreements are detected (allergy/med/diagnosis) with clinician-friendly reconciliation.' },
-  { title: 'Audit', text: 'Every run, resolution, and export event is logged for traceability and trust.' }
+  { 
+    title: '1. Ingest', 
+    icon: '📥',
+    text: 'Pull records from EHR A, SIMRS B, and Clinic C with heterogeneous schemas.',
+    details: 'Supports SATUSEHAT, BPJS, SIMRS lokal, Excel, Google Sheets, and WhatsApp referrals.'
+  },
+  { 
+    title: '2. Normalize', 
+    icon: '🔄',
+    text: 'Deterministic rules map BP/Tensi, ICD/free-text diagnoses, meds, and allergy terms.',
+    details: 'Automatic field mapping with confidence scoring for every transformation.'
+  },
+  { 
+    title: '3. Merge', 
+    icon: '🔀',
+    text: 'Canonical patient profile and longitudinal timeline are assembled across settings.',
+    details: 'Unified timeline view spanning multiple healthcare facilities.'
+  },
+  { 
+    title: '4. Conflicts', 
+    icon: '⚖️',
+    text: 'Disagreements are detected (allergy/med/diagnosis) with clinician-friendly reconciliation.',
+    details: 'Visual conflict resolution with system recommendations and audit trail.'
+  },
+  { 
+    title: '5. Export', 
+    icon: '📤',
+    text: 'Every run, resolution, and export event is logged for traceability and trust.',
+    details: 'Complete referral packets with full provenance information.'
+  }
 ];
 
 export default function HowItWorksPage() {
   return (
-    <div className="space-y-6">
-      <section className="card">
-        <h1 className="text-2xl font-bold">How it works</h1>
-        <p className="mt-2 text-sm text-slate-600">Pipeline overview for non-technical stakeholders.</p>
+    <div className="space-y-8">
+      <section className="card bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+        <h1 className="text-2xl font-bold">📖 How RecordBridge Works</h1>
+        <p className="mt-2 text-blue-100">Pipeline overview for technical and non-technical stakeholders.</p>
+        <div className="mt-4 flex gap-3">
+          <Link href="/demo" className="rounded-lg bg-white px-4 py-2 text-sm font-semibold text-blue-700">🚀 Try Demo</Link>
+        </div>
       </section>
 
-      <section className="grid grid-cols-1 gap-3 md:grid-cols-5">
-        {steps.map((step, i) => (
-          <div key={step.title} className="card relative">
-            <p className="text-xs font-semibold uppercase text-blue-600">Step {i + 1}</p>
-            <h2 className="text-lg font-semibold">{step.title}</h2>
-            <p className="text-sm text-slate-600">{step.text}</p>
+      {/* Pipeline Steps */}
+      <section className="card">
+        <h2 className="mb-6 text-xl font-bold">🔄 Data Processing Pipeline</h2>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-5">
+          {steps.map((step, i) => (
+            <div key={step.title} className="relative rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all hover:shadow-md">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-xl">
+                {step.icon}
+              </div>
+              <p className="text-xs font-semibold uppercase text-blue-600">Step {i + 1}</p>
+              <h3 className="text-lg font-semibold text-slate-800">{step.title}</h3>
+              <p className="mt-2 text-sm text-slate-600">{step.text}</p>
+              <p className="mt-2 text-xs text-slate-500">{step.details}</p>
+              {i < steps.length - 1 && (
+                <div className="absolute -right-4 top-1/2 hidden -translate-y-1/2 text-2xl text-slate-300 lg:block">→</div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Technical Details */}
+      <section className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <div className="card">
+          <h3 className="mb-4 text-lg font-semibold">🔧 Technical Implementation</h3>
+          <div className="space-y-3 text-sm text-slate-600">
+            <div className="flex items-start gap-3 rounded-lg bg-slate-50 p-3">
+              <span className="text-xl">📊</span>
+              <div>
+                <p className="font-medium text-slate-800">Deterministic Mapping Engine</p>
+                <p className="text-xs">Rule-based translation without AI dependency. 100% reproducible results.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg bg-slate-50 p-3">
+              <span className="text-xl">🏷️</span>
+              <div>
+                <p className="font-medium text-slate-800">Confidence Scoring</p>
+                <p className="text-xs">Every mapping has confidence score based on dictionary/code matches.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg bg-slate-50 p-3">
+              <span className="text-xl">🔒</span>
+              <div>
+                <p className="font-medium text-slate-800">Provenance Tracking</p>
+                <p className="text-xs">Full audit trail from source system to canonical record.</p>
+              </div>
+            </div>
           </div>
-        ))}
+        </div>
+
+        <div className="card">
+          <h3 className="mb-4 text-lg font-semibold">🏥 Indonesia Healthcare Integration</h3>
+          <div className="space-y-3 text-sm text-slate-600">
+            <div className="flex items-start gap-3 rounded-lg bg-emerald-50 p-3">
+              <span className="text-xl">🏥</span>
+              <div>
+                <p className="font-medium text-slate-800">SATUSEHAT Ready</p>
+                <p className="text-xs">Compatible with Kemenkes Indonesia health data exchange standard.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg bg-emerald-50 p-3">
+              <span className="text-xl">🛡️</span>
+              <div>
+                <p className="font-medium text-slate-800">BPJS Integration</p>
+                <p className="text-xs">Seamless integration with BPJS Kesehatan data systems.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-lg bg-emerald-50 p-3">
+              <span className="text-xl">🎖️</span>
+              <div>
+                <p className="font-medium text-slate-800">Military Healthcare</p>
+                <p className="text-xs">Designed for multi-facility military health networks.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section className="card">
-        <h2 className="text-lg font-semibold">Limitations & Disclaimer</h2>
-        <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-600">
-          <li>This is a demo with mock data and deterministic rules; it is not a production clinical decision system.</li>
-          <li>Not medical advice and not a medical device.</li>
+      {/* Limitations */}
+      <section className="card border-l-4 border-amber-400">
+        <h2 className="text-lg font-semibold">⚠️ Limitations & Disclaimer</h2>
+        <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-slate-600">
+          <li>This is a demo with mock data and deterministic rules; it is <strong>not</strong> a production clinical decision system.</li>
+          <li>Not medical advice and not a medical device per FDA/Indonesia Kemenkes regulations.</li>
           <li>Real-world deployments need clinical validation, privacy/security controls, and regulatory review.</li>
+          <li>Data encryption, role-based access, and compliance audits required for production use.</li>
         </ul>
+      </section>
+
+      {/* CTA */}
+      <section className="card bg-gradient-to-br from-slate-800 to-slate-900 text-white">
+        <div className="text-center">
+          <h2 className="text-xl font-bold">Siap mencoba RecordBridge?</h2>
+          <p className="mt-2 text-slate-300">Coba demo interaktif untuk melihat fitur-fitur dalam aksi.</p>
+          <Link href="/demo" className="mt-4 inline-block rounded-xl bg-blue-500 px-6 py-3 font-semibold hover:bg-blue-600 transition-colors">
+            🚀 Buka Demo Sekarang
+          </Link>
+        </div>
       </section>
     </div>
   );
