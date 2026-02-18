@@ -24,8 +24,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span>🏠</span>
                 Home
               </Link>
-              <Link href="/demo" className="flex items-center gap-1 text-slate-600 hover:text-blue-600 transition-colors">
+              <Link href="/features" className="flex items-center gap-1 text-slate-600 hover:text-blue-600 transition-colors">
                 <span>🚀</span>
+                Core Features
+              </Link>
+              <Link href="/demo" className="flex items-center gap-1 text-slate-600 hover:text-blue-600 transition-colors">
+                <span>🧪</span>
                 Demo
               </Link>
               <Link href="/how-it-works" className="flex items-center gap-1 text-slate-600 hover:text-blue-600 transition-colors">
@@ -56,12 +60,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </p>
               </div>
               <div>
-                <h4 className="font-semibold text-slate-800">Features</h4>
+                <h4 className="font-semibold text-slate-800">Core Features</h4>
                 <ul className="mt-2 space-y-1 text-sm text-slate-600">
-                  <li>• Schema-less Mapping</li>
-                  <li>• Unified Timeline</li>
-                  <li>• Conflict Resolution</li>
-                  <li>• Audit Trail</li>
+                  <li>• Auto-Connector Engine</li>
+                  <li>• AI Mapping Engine</li>
+                  <li>• Health Standardization</li>
+                  <li>• Real-Time Sync</li>
+                  <li>• API Gateway</li>
                 </ul>
               </div>
               <div>
