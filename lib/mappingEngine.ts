@@ -158,7 +158,7 @@ export function runTranslation(selectedSources: SourceSystem[]): CanonicalRecord
     timelineEvents.push(...buildTimeline(source));
   });
 
-  const allergyValues = [...new Set(allergies.map((a) => a.substance))];
+  const allergyValues = Array.from(new Set(allergies.map((a) => a.substance)));
   if (allergyValues.includes('Penicillin') && allergyValues.includes('No Known Allergies')) {
     conflicts.push({
       id: 'conf-allergy-1',
@@ -171,7 +171,9 @@ export function runTranslation(selectedSources: SourceSystem[]): CanonicalRecord
     });
   }
 
-  const amlodipineDoses = [...new Set(medications.filter((m) => m.canonicalName === 'Amlodipine').map((m) => m.dose))];
+  const amlodipineDoses = Array.from(
+    new Set(medications.filter((m) => m.canonicalName === 'Amlodipine').map((m) => m.dose))
+  );
   if (amlodipineDoses.length > 1) {
     conflicts.push({
       id: 'conf-med-1',
@@ -184,7 +186,7 @@ export function runTranslation(selectedSources: SourceSystem[]): CanonicalRecord
     });
   }
 
-  const dxNames = [...new Set(conditions.map((c) => c.canonicalName))];
+  const dxNames = Array.from(new Set(conditions.map((c) => c.canonicalName)));
   if (dxNames.includes('Chronic Kidney Disease') && !dxNames.includes('Hypertension')) {
     conflicts.push({
       id: 'conf-dx-1',
