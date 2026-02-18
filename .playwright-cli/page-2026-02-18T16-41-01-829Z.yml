@@ -1,0 +1,677 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "RecordBridge" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e5]:
+        - link "Demo" [ref=e6] [cursor=pointer]:
+          - /url: /demo
+        - link "How it works" [ref=e7] [cursor=pointer]:
+          - /url: /how-it-works
+  - main [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - heading "Schema-less EHR/SIMRS Translator Demo" [level=1] [ref=e11]
+        - paragraph [ref=e12]:
+          - text: "Feature Tour:"
+          - link "#mapping" [ref=e13] [cursor=pointer]:
+            - /url: "#mapping"
+          - link "#timeline" [ref=e14] [cursor=pointer]:
+            - /url: "#timeline"
+          - link "#conflicts" [ref=e15] [cursor=pointer]:
+            - /url: "#conflicts"
+          - link "#provenance" [ref=e16] [cursor=pointer]:
+            - /url: "#provenance"
+          - link "#export" [ref=e17] [cursor=pointer]:
+            - /url: "#export"
+      - generic [ref=e18]:
+        - generic [ref=e376]:
+          - generic [ref=e377]:
+            - generic [ref=e378]: 🤖
+            - heading "AI Clinical Summary" [level=3] [ref=e379]
+          - generic [ref=e380]: AI-Powered
+        - generic [ref=e381]:
+          - paragraph [ref=e382]: Laki-laki, 32 tahun
+          - generic [ref=e383]:
+            - generic [ref=e384]: Hipertensi
+            - generic [ref=e385]: Dislipidemia
+        - generic [ref=e387]:
+          - generic [ref=e388]: "Tren Tekanan Darah:"
+          - generic [ref=e389]: Membaik ↗️
+        - generic [ref=e390]:
+          - heading "Ringkasan Klinis:" [level=4] [ref=e391]
+          - generic [ref=e393]:
+            - generic [ref=e394]: 📈
+            - generic [ref=e395]:
+              - paragraph [ref=e396]: Tekanan darah membaik dalam 2 bulan terakhir
+              - paragraph [ref=e397]: "Berdasarkan: EHR_A, SIMRS_B"
+        - paragraph [ref=e398]: "Diperbarui: 18/2/2026, 16.41.01"
+      - generic [ref=e19]:
+        - generic [ref=e20]:
+          - heading "Raw Sources" [level=2] [ref=e21]
+          - paragraph [ref=e22]: Select inputs to merge. The raw schemas intentionally differ to simulate real-world EHR fragmentation.
+          - generic [ref=e23]:
+            - button "EHR A" [ref=e24] [cursor=pointer]
+            - button "SIMRS B" [ref=e25] [cursor=pointer]
+            - button "Clinic C" [ref=e26] [cursor=pointer]
+          - generic [ref=e27]:
+            - generic [ref=e28]:
+              - checkbox "Merge EHR A" [checked] [ref=e29]
+              - text: Merge EHR A
+            - generic [ref=e30]:
+              - checkbox "Merge SIMRS B" [checked] [ref=e31]
+              - text: Merge SIMRS B
+            - generic [ref=e32]:
+              - checkbox "Merge Clinic C" [checked] [ref=e33]
+              - text: Merge Clinic C
+          - generic [ref=e34]: "{ \"patient_id\": \"MRN-49281\", \"name\": \"Budi Santoso\", \"dob\": \"1993-05-15\", \"sex\": \"Male\", \"language\": \"id\", \"BP\": \"135/85\", \"hr\": 72, \"weight_kg\": 78, \"height_cm\": 172, \"diagnosis_icd10\": [ \"I10\", \"E78.5\" ], \"allergies\": [ \"No Known Allergies\" ], \"meds\": [ { \"generic\": \"Amlodipine\", \"dose\": \"5 mg\", \"route\": \"PO\", \"freq\": \"OD\" }, { \"generic\": \"Simvastatin\", \"dose\": \"20mg\", \"route\": \"PO\", \"freq\": \"HS\" } ], \"encounters\": [ { \"date\": \"2026-01-14T08:00:00Z\", \"type\": \"Outpatient\", \"reason\": \"Hypertension follow-up\" }, { \"date\": \"2025-11-20T09:00:00Z\", \"type\": \"Outpatient\", \"reason\": \"Annual checkup\" } ], \"labs\": [ { \"ts\": \"2026-01-14T08:15:00Z\", \"name\": \"LDL Cholesterol\", \"value\": \"142\", \"unit\": \"mg/dL\" }, { \"ts\": \"2025-11-20T09:30:00Z\", \"name\": \"LDL Cholesterol\", \"value\": \"156\", \"unit\": \"mg/dL\" } ] }"
+          - button "Run Translation" [ref=e35] [cursor=pointer]
+        - generic [ref=e36]:
+          - generic [ref=e37]:
+            - generic [ref=e399]:
+              - generic [ref=e400]: 📡
+              - heading "Sumber Data & Provenance" [level=3] [ref=e401]
+            - generic [ref=e402]:
+              - generic [ref=e403]:
+                - generic [ref=e404]:
+                  - generic [ref=e405]:
+                    - generic [ref=e406]: 🏥
+                    - generic [ref=e407]:
+                      - heading "EHR System A" [level=4] [ref=e408]
+                      - paragraph [ref=e409]: RS Swasta Jakarta
+                  - generic [ref=e410]: 94% confidence
+                - paragraph [ref=e411]: Electronic Health Record - Format internasional
+                - generic [ref=e412]:
+                  - generic [ref=e413]:
+                    - generic [ref=e414]: "Field yang dipetakan:"
+                    - generic [ref=e415]: "3"
+                  - generic [ref=e416]:
+                    - generic [ref=e417]: "Terakhir update:"
+                    - generic [ref=e418]: 14/1/2026
+                - paragraph [ref=e423]: Kualitas pemetaan data
+              - generic [ref=e424]:
+                - generic [ref=e425]:
+                  - generic [ref=e426]:
+                    - generic [ref=e427]: 🏛️
+                    - generic [ref=e428]:
+                      - heading "SIMRS B" [level=4] [ref=e429]
+                      - paragraph [ref=e430]: RSUD Regional
+                  - generic [ref=e431]: 89% confidence
+                - paragraph [ref=e432]: Sistem Informasi Manajemen RS - Format lokal Indonesia
+                - generic [ref=e433]:
+                  - generic [ref=e434]:
+                    - generic [ref=e435]: "Field yang dipetakan:"
+                    - generic [ref=e436]: "3"
+                  - generic [ref=e437]:
+                    - generic [ref=e438]: "Terakhir update:"
+                    - generic [ref=e439]: 15/1/2026
+                - paragraph [ref=e444]: Kualitas pemetaan data
+              - generic [ref=e445]:
+                - generic [ref=e446]:
+                  - generic [ref=e447]:
+                    - generic [ref=e448]: 🏪
+                    - generic [ref=e449]:
+                      - heading "Clinic C" [level=4] [ref=e450]
+                      - paragraph [ref=e451]: Klinik Pratama
+                  - generic [ref=e452]: 94% confidence
+                - paragraph [ref=e453]: Data dari klinik/telemedicine
+                - generic [ref=e454]:
+                  - generic [ref=e455]:
+                    - generic [ref=e456]: "Field yang dipetakan:"
+                    - generic [ref=e457]: "2"
+                  - generic [ref=e458]:
+                    - generic [ref=e459]: "Terakhir update:"
+                    - generic [ref=e460]: 16/1/2026
+                - paragraph [ref=e465]: Kualitas pemetaan data
+            - generic [ref=e466]:
+              - heading "🔄 Proses Fusi Data" [level=4] [ref=e467]
+              - generic [ref=e468]:
+                - generic [ref=e469]:
+                  - generic [ref=e470]: EHR_A
+                  - generic [ref=e471]: +
+                - generic [ref=e472]:
+                  - generic [ref=e473]: SIMRS_B
+                  - generic [ref=e474]: +
+                - generic [ref=e476]: CLINIC_C
+                - generic [ref=e477]: →
+                - generic [ref=e478]: Unified Record
+              - paragraph [ref=e479]: Data dari 3 sistem berbeda telah dinormalisasi dan digabungkan dengan total 8 field yang dipetakan.
+          - generic [ref=e38]:
+            - heading "Canonical Patient Summary" [level=3] [ref=e480]
+            - generic [ref=e481]:
+              - paragraph [ref=e482]:
+                - strong [ref=e483]: "Name:"
+                - text: Budi Santoso
+              - paragraph [ref=e484]:
+                - strong [ref=e485]: "DOB:"
+                - text: 1993-05-15
+              - paragraph [ref=e486]:
+                - strong [ref=e487]: "Identifiers:"
+                - text: MRN-49281, SIMRS-49281, EXT-49281
+              - paragraph [ref=e488]:
+                - strong [ref=e489]: "Language:"
+                - text: Bahasa Indonesia
+            - generic [ref=e490]:
+              - paragraph [ref=e491]:
+                - strong [ref=e492]: "Allergies:"
+                - text: No Known Allergies, No Known Allergies, none
+              - paragraph [ref=e493]:
+                - strong [ref=e494]: "Active meds:"
+                - text: Amlodipine 5 mg • Simvastatin 20mg • Amlodipine 5 mg • Simvastatin 20 mg • Amlodipine 5 mg • Simvastatin 20 mg
+              - paragraph [ref=e495]:
+                - strong [ref=e496]: "Key conditions:"
+                - text: Hypertension, Hyperlipidemia
+          - generic [ref=e39]:
+            - heading "Mapping Table (Vitals + Core Fields)" [level=3] [ref=e40]
+            - paragraph [ref=e41]: "Tooltip equivalent: confidence reflects rule strength (dictionary/code match = higher)."
+            - table [ref=e498]:
+              - rowgroup [ref=e499]:
+                - row "Raw Field Canonical Field Normalized Value Unit Confidence Provenance" [ref=e500]:
+                  - columnheader "Raw Field" [ref=e501]
+                  - columnheader "Canonical Field" [ref=e502]
+                  - columnheader "Normalized Value" [ref=e503]
+                  - columnheader "Unit" [ref=e504]
+                  - columnheader "Confidence" [ref=e505]
+                  - columnheader "Provenance" [ref=e506]
+              - rowgroup [ref=e507]:
+                - row "BP observations.bloodPressure 135/85 mmHg 95% EHR_A @ 2026-01-14T08:30:00Z" [ref=e508]:
+                  - cell "BP" [ref=e509]
+                  - cell "observations.bloodPressure" [ref=e510]
+                  - cell "135/85" [ref=e511]
+                  - cell "mmHg" [ref=e512]
+                  - cell "95%" [ref=e513]:
+                    - generic [ref=e514]: 95%
+                  - cell "EHR_A @ 2026-01-14T08:30:00Z" [ref=e515]
+                - row "diagnosis conditions Hypertension - 95% EHR_A @ 2026-01-14T08:30:00Z" [ref=e516]:
+                  - cell "diagnosis" [ref=e517]
+                  - cell "conditions" [ref=e518]
+                  - cell "Hypertension" [ref=e519]
+                  - cell "-" [ref=e520]
+                  - cell "95%" [ref=e521]:
+                    - generic [ref=e522]: 95%
+                  - cell "EHR_A @ 2026-01-14T08:30:00Z" [ref=e523]
+                - row "diagnosis conditions Hyperlipidemia - 92% EHR_A @ 2026-01-14T08:30:00Z" [ref=e524]:
+                  - cell "diagnosis" [ref=e525]
+                  - cell "conditions" [ref=e526]
+                  - cell "Hyperlipidemia" [ref=e527]
+                  - cell "-" [ref=e528]
+                  - cell "92%" [ref=e529]:
+                    - generic [ref=e530]: 92%
+                  - cell "EHR_A @ 2026-01-14T08:30:00Z" [ref=e531]
+                - row "Tensi.sistolik/Tensi.diastolik observations.bloodPressure 128/82 mmHg 92% SIMRS_B @ 2026-01-15T09:10:00Z" [ref=e532]:
+                  - cell "Tensi.sistolik/Tensi.diastolik" [ref=e533]
+                  - cell "observations.bloodPressure" [ref=e534]
+                  - cell "128/82" [ref=e535]
+                  - cell "mmHg" [ref=e536]
+                  - cell "92%" [ref=e537]:
+                    - generic [ref=e538]: 92%
+                  - cell "SIMRS_B @ 2026-01-15T09:10:00Z" [ref=e539]
+                - row "diagnosis conditions Hypertension - 87% SIMRS_B @ 2026-01-15T09:10:00Z" [ref=e540]:
+                  - cell "diagnosis" [ref=e541]
+                  - cell "conditions" [ref=e542]
+                  - cell "Hypertension" [ref=e543]
+                  - cell "-" [ref=e544]
+                  - cell "87%" [ref=e545]:
+                    - generic [ref=e546]: 87%
+                  - cell "SIMRS_B @ 2026-01-15T09:10:00Z" [ref=e547]
+                - row "diagnosis conditions Hyperlipidemia - 88% SIMRS_B @ 2026-01-15T09:10:00Z" [ref=e548]:
+                  - cell "diagnosis" [ref=e549]
+                  - cell "conditions" [ref=e550]
+                  - cell "Hyperlipidemia" [ref=e551]
+                  - cell "-" [ref=e552]
+                  - cell "88%" [ref=e553]:
+                    - generic [ref=e554]: 88%
+                  - cell "SIMRS_B @ 2026-01-15T09:10:00Z" [ref=e555]
+                - row "diagnosis conditions Hypertension - 93% CLINIC_C @ 2026-01-16T11:45:00Z" [ref=e556]:
+                  - cell "diagnosis" [ref=e557]
+                  - cell "conditions" [ref=e558]
+                  - cell "Hypertension" [ref=e559]
+                  - cell "-" [ref=e560]
+                  - cell "93%" [ref=e561]:
+                    - generic [ref=e562]: 93%
+                  - cell "CLINIC_C @ 2026-01-16T11:45:00Z" [ref=e563]
+                - row "diagnosis conditions Hyperlipidemia - 95% CLINIC_C @ 2026-01-16T11:45:00Z" [ref=e564]:
+                  - cell "diagnosis" [ref=e565]
+                  - cell "conditions" [ref=e566]
+                  - cell "Hyperlipidemia" [ref=e567]
+                  - cell "-" [ref=e568]
+                  - cell "95%" [ref=e569]:
+                    - generic [ref=e570]: 95%
+                  - cell "CLINIC_C @ 2026-01-16T11:45:00Z" [ref=e571]
+          - generic [ref=e43]:
+            - heading "Diagnosis Normalization" [level=3] [ref=e44]
+            - paragraph [ref=e45]: Extracted entities from ICD and free-text (e.g., diabetes, kencing manis) are normalized to canonical conditions.
+            - generic [ref=e572]:
+              - generic [ref=e573]:
+                - paragraph [ref=e574]:
+                  - strong [ref=e575]: Hypertension
+                  - text: (I10)
+                - paragraph [ref=e576]: "Source entity: “I10” · Confidence 95%"
+              - generic [ref=e577]:
+                - paragraph [ref=e578]:
+                  - strong [ref=e579]: Hyperlipidemia
+                  - text: (E78.5)
+                - paragraph [ref=e580]: "Source entity: “E78.5” · Confidence 92%"
+              - generic [ref=e581]:
+                - paragraph [ref=e582]:
+                  - strong [ref=e583]: Hypertension
+                - paragraph [ref=e584]: "Source entity: “hipertensi stadium 1” · Confidence 87%"
+              - generic [ref=e585]:
+                - paragraph [ref=e586]:
+                  - strong [ref=e587]: Hyperlipidemia
+                - paragraph [ref=e588]: "Source entity: “dislipidemia” · Confidence 88%"
+              - generic [ref=e589]:
+                - paragraph [ref=e590]:
+                  - strong [ref=e591]: Hypertension
+                - paragraph [ref=e592]: "Source entity: “essential hypertension” · Confidence 93%"
+              - generic [ref=e593]:
+                - paragraph [ref=e594]:
+                  - strong [ref=e595]: Hyperlipidemia
+                - paragraph [ref=e596]: "Source entity: “hyperlipidemia” · Confidence 95%"
+          - heading "Conflicts Panel" [level=3] [ref=e597]
+          - generic [ref=e48]:
+            - heading "Provenance & Trust" [level=3] [ref=e49]
+            - generic [ref=e50]:
+              - checkbox "Show provenance inline" [checked] [ref=e51]
+              - text: Show provenance inline
+            - paragraph [ref=e52]: When enabled, source system, timestamp, and confidence appear across mappings/timeline to support traceability.
+          - generic [ref=e53]:
+            - heading "Unified Timeline" [level=3] [ref=e54]
+            - generic [ref=e55]:
+              - button "Encounter" [ref=e56] [cursor=pointer]
+              - button "Lab" [ref=e57] [cursor=pointer]
+              - button "Meds" [ref=e58] [cursor=pointer]
+              - button "Diagnosis" [ref=e59] [cursor=pointer]
+              - button "Vitals" [ref=e60] [cursor=pointer]
+            - generic [ref=e61]:
+              - generic [ref=e598]:
+                - paragraph [ref=e599]:
+                  - strong [ref=e600]: 10/5/2025, 2:00:00 PM
+                  - text: · Encounter · Clinic
+                - paragraph [ref=e601]: Newly diagnosed hypertension
+                - paragraph [ref=e602]: CLINIC_C · 91%
+              - generic [ref=e603]:
+                - paragraph [ref=e604]:
+                  - strong [ref=e605]: 10/5/2025, 3:00:00 PM
+                  - text: · Lab · LDL
+                - paragraph [ref=e606]: 162 mg/dL
+                - paragraph [ref=e607]: CLINIC_C · 90%
+              - generic [ref=e608]:
+                - paragraph [ref=e609]:
+                  - strong [ref=e610]: 11/20/2025, 9:00:00 AM
+                  - text: · Encounter · Outpatient
+                - paragraph [ref=e611]: Annual checkup
+                - paragraph [ref=e612]: EHR_A · 91%
+              - generic [ref=e613]:
+                - paragraph [ref=e614]:
+                  - strong [ref=e615]: 11/20/2025, 9:30:00 AM
+                  - text: · Lab · LDL Cholesterol
+                - paragraph [ref=e616]: 156 mg/dL
+                - paragraph [ref=e617]: EHR_A · 90%
+              - generic [ref=e618]:
+                - paragraph [ref=e619]:
+                  - strong [ref=e620]: 12/10/2025, 10:30:00 AM
+                  - text: · Encounter · Poli Jantung
+                - paragraph [ref=e621]: Tekanan darah tinggi
+                - paragraph [ref=e622]: SIMRS_B · 91%
+              - generic [ref=e623]:
+                - paragraph [ref=e624]:
+                  - strong [ref=e625]: 12/10/2025, 11:00:00 AM
+                  - text: · Lab · Kolesterol LDL
+                - paragraph [ref=e626]: 148 mg/dL
+                - paragraph [ref=e627]: SIMRS_B · 90%
+              - generic [ref=e628]:
+                - paragraph [ref=e629]:
+                  - strong [ref=e630]: 1/14/2026, 8:00:00 AM
+                  - text: · Encounter · Outpatient
+                - paragraph [ref=e631]: Hypertension follow-up
+                - paragraph [ref=e632]: EHR_A · 91%
+              - generic [ref=e633]:
+                - paragraph [ref=e634]:
+                  - strong [ref=e635]: 1/14/2026, 8:15:00 AM
+                  - text: · Lab · LDL Cholesterol
+                - paragraph [ref=e636]: 142 mg/dL
+                - paragraph [ref=e637]: EHR_A · 90%
+              - generic [ref=e638]:
+                - paragraph [ref=e639]:
+                  - strong [ref=e640]: 1/15/2026, 9:00:00 AM
+                  - text: · Encounter · Poli Jantung
+                - paragraph [ref=e641]: Kontrol rutin hipertensi
+                - paragraph [ref=e642]: SIMRS_B · 91%
+              - generic [ref=e643]:
+                - paragraph [ref=e644]:
+                  - strong [ref=e645]: 1/15/2026, 9:30:00 AM
+                  - text: · Lab · Kolesterol LDL
+                - paragraph [ref=e646]: 138 mg/dL
+                - paragraph [ref=e647]: SIMRS_B · 90%
+              - generic [ref=e648]:
+                - paragraph [ref=e649]:
+                  - strong [ref=e650]: 1/16/2026, 11:00:00 AM
+                  - text: · Encounter · Telemedicine
+                - paragraph [ref=e651]: BP improving, continue current regimen
+                - paragraph [ref=e652]: CLINIC_C · 91%
+              - generic [ref=e653]:
+                - paragraph [ref=e654]:
+                  - strong [ref=e655]: 1/16/2026, 11:30:00 AM
+                  - text: · Lab · LDL
+                - paragraph [ref=e656]: 135 mg/dL
+                - paragraph [ref=e657]: CLINIC_C · 90%
+          - generic [ref=e63]:
+            - heading "Export Referral Packet" [level=3] [ref=e64]
+            - paragraph [ref=e65]: Download a handover packet containing problems, meds, allergies, vitals, labs, unresolved conflicts, and provenance footer.
+            - button "Export Referral Packet" [ref=e66] [cursor=pointer]
+          - generic [ref=e67]:
+            - heading "Audit Log Viewer" [level=3] [ref=e68]
+            - generic [ref=e658]:
+              - paragraph [ref=e659]: translation_run
+              - paragraph [ref=e660]: Translation run with 3 selected source(s).
+              - paragraph [ref=e661]: 2/18/2026, 4:41:01 PM
+          - generic [ref=e71]:
+            - generic [ref=e72]:
+              - generic [ref=e73]: 🌐
+              - heading "Pemetaan Bilingual" [level=3] [ref=e74]
+              - generic [ref=e75]: ID ↔ EN
+            - paragraph [ref=e76]: RecordBridge secara otomatis menerjemahkan istilah medis antara Bahasa Indonesia dan Inggris, memungkinkan interoperabilitas antara SIMRS lokal dan sistem internasional.
+            - textbox "Cari istilah medis..." [ref=e78]
+            - generic [ref=e79]:
+              - button "Semua" [ref=e80] [cursor=pointer]
+              - button "🩺 Tanda Vital" [ref=e81] [cursor=pointer]:
+                - generic [ref=e82]: 🩺
+                - text: Tanda Vital
+              - button "🧪 Laboratorium" [ref=e83] [cursor=pointer]:
+                - generic [ref=e84]: 🧪
+                - text: Laboratorium
+              - button "📝 Umum" [ref=e85] [cursor=pointer]:
+                - generic [ref=e86]: 📝
+                - text: Umum
+              - button "💊 Obat" [ref=e87] [cursor=pointer]:
+                - generic [ref=e88]: 💊
+                - text: Obat
+              - button "📋 Diagnosis" [ref=e89] [cursor=pointer]:
+                - generic [ref=e90]: 📋
+                - text: Diagnosis
+            - generic [ref=e91]:
+              - generic [ref=e92]:
+                - generic [ref=e93]:
+                  - generic [ref=e94]: 🩺
+                  - generic [ref=e95]:
+                    - paragraph [ref=e96]: Tekanan Darah
+                    - paragraph [ref=e97]: Blood Pressure
+                - generic [ref=e98]: ↔️
+              - generic [ref=e99]:
+                - generic [ref=e100]:
+                  - generic [ref=e101]: 🩺
+                  - generic [ref=e102]:
+                    - paragraph [ref=e103]: Tensi
+                    - paragraph [ref=e104]: Blood Pressure
+                - generic [ref=e105]: ↔️
+              - generic [ref=e106]:
+                - generic [ref=e107]:
+                  - generic [ref=e108]: 🩺
+                  - generic [ref=e109]:
+                    - paragraph [ref=e110]: Denyut Nadi
+                    - paragraph [ref=e111]: Heart Rate / Pulse
+                - generic [ref=e112]: ↔️
+              - generic [ref=e113]:
+                - generic [ref=e114]:
+                  - generic [ref=e115]: 🩺
+                  - generic [ref=e116]:
+                    - paragraph [ref=e117]: Suhu Tubuh
+                    - paragraph [ref=e118]: Body Temperature
+                - generic [ref=e119]: ↔️
+              - generic [ref=e120]:
+                - generic [ref=e121]:
+                  - generic [ref=e122]: 🩺
+                  - generic [ref=e123]:
+                    - paragraph [ref=e124]: Berat Badan
+                    - paragraph [ref=e125]: Body Weight
+                - generic [ref=e126]: ↔️
+              - generic [ref=e127]:
+                - generic [ref=e128]:
+                  - generic [ref=e129]: 🩺
+                  - generic [ref=e130]:
+                    - paragraph [ref=e131]: Tinggi Badan
+                    - paragraph [ref=e132]: Height
+                - generic [ref=e133]: ↔️
+              - generic [ref=e134]:
+                - generic [ref=e135]:
+                  - generic [ref=e136]: 🧪
+                  - generic [ref=e137]:
+                    - paragraph [ref=e138]: Gula Darah Puasa
+                    - paragraph [ref=e139]: Fasting Blood Glucose
+                - generic [ref=e140]: ↔️
+              - generic [ref=e141]:
+                - generic [ref=e142]:
+                  - generic [ref=e143]: 🧪
+                  - generic [ref=e144]:
+                    - paragraph [ref=e145]: Hemoglobin A1C
+                    - paragraph [ref=e146]: HbA1c
+                - generic [ref=e147]: ↔️
+              - generic [ref=e148]:
+                - generic [ref=e149]:
+                  - generic [ref=e150]: 🧪
+                  - generic [ref=e151]:
+                    - paragraph [ref=e152]: Kolesterol LDL
+                    - paragraph [ref=e153]: LDL Cholesterol
+                - generic [ref=e154]: ↔️
+              - generic [ref=e155]:
+                - generic [ref=e156]:
+                  - generic [ref=e157]: 🧪
+                  - generic [ref=e158]:
+                    - paragraph [ref=e159]: Kolesterol HDL
+                    - paragraph [ref=e160]: HDL Cholesterol
+                - generic [ref=e161]: ↔️
+              - generic [ref=e162]:
+                - generic [ref=e163]:
+                  - generic [ref=e164]: 🧪
+                  - generic [ref=e165]:
+                    - paragraph [ref=e166]: Trigliserida
+                    - paragraph [ref=e167]: Triglycerides
+                - generic [ref=e168]: ↔️
+              - generic [ref=e169]:
+                - generic [ref=e170]:
+                  - generic [ref=e171]: 🧪
+                  - generic [ref=e172]:
+                    - paragraph [ref=e173]: Kreatinin
+                    - paragraph [ref=e174]: Creatinine
+                - generic [ref=e175]: ↔️
+              - generic [ref=e176]:
+                - generic [ref=e177]:
+                  - generic [ref=e178]: 🧪
+                  - generic [ref=e179]:
+                    - paragraph [ref=e180]: Asam Urat
+                    - paragraph [ref=e181]: Uric Acid
+                - generic [ref=e182]: ↔️
+              - generic [ref=e183]:
+                - generic [ref=e184]:
+                  - generic [ref=e185]: 📝
+                  - generic [ref=e186]:
+                    - paragraph [ref=e187]: Riwayat Penyakit
+                    - paragraph [ref=e188]: Medical History
+                - generic [ref=e189]: ↔️
+              - generic [ref=e190]:
+                - generic [ref=e191]:
+                  - generic [ref=e192]: 📝
+                  - generic [ref=e193]:
+                    - paragraph [ref=e194]: Alergi
+                    - paragraph [ref=e195]: Allergies
+                - generic [ref=e196]: ↔️
+              - generic [ref=e197]:
+                - generic [ref=e198]:
+                  - generic [ref=e199]: 💊
+                  - generic [ref=e200]:
+                    - paragraph [ref=e201]: Pengobatan
+                    - paragraph [ref=e202]: Medications
+                - generic [ref=e203]: ↔️
+              - generic [ref=e204]:
+                - generic [ref=e205]:
+                  - generic [ref=e206]: 💊
+                  - generic [ref=e207]:
+                    - paragraph [ref=e208]: Obat
+                    - paragraph [ref=e209]: Medicine / Drug
+                - generic [ref=e210]: ↔️
+              - generic [ref=e211]:
+                - generic [ref=e212]:
+                  - generic [ref=e213]: 💊
+                  - generic [ref=e214]:
+                    - paragraph [ref=e215]: Dosis
+                    - paragraph [ref=e216]: Dose
+                - generic [ref=e217]: ↔️
+              - generic [ref=e218]:
+                - generic [ref=e219]:
+                  - generic [ref=e220]: 💊
+                  - generic [ref=e221]:
+                    - paragraph [ref=e222]: Frekuensi
+                    - paragraph [ref=e223]: Frequency
+                - generic [ref=e224]: ↔️
+              - generic [ref=e225]:
+                - generic [ref=e226]:
+                  - generic [ref=e227]: 💊
+                  - generic [ref=e228]:
+                    - paragraph [ref=e229]: Rute
+                    - paragraph [ref=e230]: Route
+                - generic [ref=e231]: ↔️
+              - generic [ref=e232]:
+                - generic [ref=e233]:
+                  - generic [ref=e234]: 💊
+                  - generic [ref=e235]:
+                    - paragraph [ref=e236]: Tablet
+                    - paragraph [ref=e237]: Tablet
+                - generic [ref=e238]: ↔️
+              - generic [ref=e239]:
+                - generic [ref=e240]:
+                  - generic [ref=e241]: 💊
+                  - generic [ref=e242]:
+                    - paragraph [ref=e243]: Kapsul
+                    - paragraph [ref=e244]: Capsule
+                - generic [ref=e245]: ↔️
+              - generic [ref=e246]:
+                - generic [ref=e247]:
+                  - generic [ref=e248]: 💊
+                  - generic [ref=e249]:
+                    - paragraph [ref=e250]: Suntik
+                    - paragraph [ref=e251]: Injection
+                - generic [ref=e252]: ↔️
+              - generic [ref=e253]:
+                - generic [ref=e254]:
+                  - generic [ref=e255]: 📋
+                  - generic [ref=e256]:
+                    - paragraph [ref=e257]: Hipertensi
+                    - paragraph [ref=e258]: Hypertension
+                - generic [ref=e259]: ↔️
+              - generic [ref=e260]:
+                - generic [ref=e261]:
+                  - generic [ref=e262]: 📋
+                  - generic [ref=e263]:
+                    - paragraph [ref=e264]: Hipertensi Stadium 1
+                    - paragraph [ref=e265]: Hypertension Stage 1
+                - generic [ref=e266]: ↔️
+              - generic [ref=e267]:
+                - generic [ref=e268]:
+                  - generic [ref=e269]: 📋
+                  - generic [ref=e270]:
+                    - paragraph [ref=e271]: Diabetes / Kencing Manis
+                    - paragraph [ref=e272]: Diabetes Mellitus
+                - generic [ref=e273]: ↔️
+              - generic [ref=e274]:
+                - generic [ref=e275]:
+                  - generic [ref=e276]: 📋
+                  - generic [ref=e277]:
+                    - paragraph [ref=e278]: Dislipidemia
+                    - paragraph [ref=e279]: Hyperlipidemia / Dyslipidemia
+                - generic [ref=e280]: ↔️
+              - generic [ref=e281]:
+                - generic [ref=e282]:
+                  - generic [ref=e283]: 📋
+                  - generic [ref=e284]:
+                    - paragraph [ref=e285]: Penyakit Ginjal
+                    - paragraph [ref=e286]: Kidney Disease
+                - generic [ref=e287]: ↔️
+              - generic [ref=e288]:
+                - generic [ref=e289]:
+                  - generic [ref=e290]: 📋
+                  - generic [ref=e291]:
+                    - paragraph [ref=e292]: Gangguan Jantung
+                    - paragraph [ref=e293]: Heart Disorder
+                - generic [ref=e294]: ↔️
+              - generic [ref=e295]:
+                - generic [ref=e296]:
+                  - generic [ref=e297]: 📋
+                  - generic [ref=e298]:
+                    - paragraph [ref=e299]: Stroke
+                    - paragraph [ref=e300]: Stroke
+                - generic [ref=e301]: ↔️
+              - generic [ref=e302]:
+                - generic [ref=e303]:
+                  - generic [ref=e304]: 📋
+                  - generic [ref=e305]:
+                    - paragraph [ref=e306]: Asma
+                    - paragraph [ref=e307]: Asthma
+                - generic [ref=e308]: ↔️
+              - generic [ref=e309]:
+                - generic [ref=e310]:
+                  - generic [ref=e311]: 📝
+                  - generic [ref=e312]:
+                    - paragraph [ref=e313]: Kunjungan
+                    - paragraph [ref=e314]: Visit / Encounter
+                - generic [ref=e315]: ↔️
+              - generic [ref=e316]:
+                - generic [ref=e317]:
+                  - generic [ref=e318]: 📝
+                  - generic [ref=e319]:
+                    - paragraph [ref=e320]: Keluhan
+                    - paragraph [ref=e321]: Chief Complaint
+                - generic [ref=e322]: ↔️
+              - generic [ref=e323]:
+                - generic [ref=e324]:
+                  - generic [ref=e325]: 📝
+                  - generic [ref=e326]:
+                    - paragraph [ref=e327]: Anamnesis
+                    - paragraph [ref=e328]: Anamnesis / History Taking
+                - generic [ref=e329]: ↔️
+              - generic [ref=e330]:
+                - generic [ref=e331]:
+                  - generic [ref=e332]: 📝
+                  - generic [ref=e333]:
+                    - paragraph [ref=e334]: Pemeriksaan Fisik
+                    - paragraph [ref=e335]: Physical Examination
+                - generic [ref=e336]: ↔️
+              - generic [ref=e337]:
+                - generic [ref=e338]:
+                  - generic [ref=e339]: 📝
+                  - generic [ref=e340]:
+                    - paragraph [ref=e341]: Pasien
+                    - paragraph [ref=e342]: Patient
+                - generic [ref=e343]: ↔️
+              - generic [ref=e344]:
+                - generic [ref=e345]:
+                  - generic [ref=e346]: 📝
+                  - generic [ref=e347]:
+                    - paragraph [ref=e348]: Dokter
+                    - paragraph [ref=e349]: Doctor / Physician
+                - generic [ref=e350]: ↔️
+              - generic [ref=e351]:
+                - generic [ref=e352]:
+                  - generic [ref=e353]: 📝
+                  - generic [ref=e354]:
+                    - paragraph [ref=e355]: Perawat
+                    - paragraph [ref=e356]: Nurse
+                - generic [ref=e357]: ↔️
+              - generic [ref=e358]:
+                - generic [ref=e359]:
+                  - generic [ref=e360]: 💊
+                  - generic [ref=e361]:
+                    - paragraph [ref=e362]: Resep
+                    - paragraph [ref=e363]: Prescription
+                - generic [ref=e364]: ↔️
+              - generic [ref=e365]:
+                - generic [ref=e366]:
+                  - generic [ref=e367]: 🧪
+                  - generic [ref=e368]:
+                    - paragraph [ref=e369]: Pemeriksaan
+                    - paragraph [ref=e370]: Examination / Lab Test
+                - generic [ref=e371]: ↔️
+            - paragraph [ref=e373]:
+              - strong [ref=e374]: "💡 Contoh Pemetaan Real-time:"
+              - text: Tensi sistolik/diastolik dari SIMRS otomatis dipetakan ke BP (Blood Pressure) format internasional dengan normalisasi unit mmHg.
+  - alert [ref=e375]

@@ -88,6 +88,26 @@ export interface AuditEntry {
   timestamp: string;
 }
 
+export interface ClinicalInsight {
+  type: 'trend' | 'alert' | 'improvement' | 'stable';
+  message: string;
+  severity: 'info' | 'warning' | 'critical';
+  basedOn: string[];
+}
+
+export interface ClinicalSummary {
+  demographics: {
+    age: number;
+    gender: string;
+    displayText: string;
+  };
+  primaryConditions: string[];
+  bpTrend: 'improving' | 'worsening' | 'stable' | 'unknown';
+  keyInsights: ClinicalInsight[];
+  riskFlags: string[];
+  lastUpdated: string;
+}
+
 export interface CanonicalRecord {
   patient: {
     identifiers: string[];

@@ -2,6 +2,8 @@ import { RAW_SOURCES } from '@/lib/mockData';
 import {
   AuditEntry,
   CanonicalRecord,
+  ClinicalInsight,
+  ClinicalSummary,
   Condition,
   Conflict,
   MappingDecision,
@@ -13,10 +15,15 @@ import {
 const diagnosisDictionary: Record<string, { canonical: string; confidence: number; code?: string }> = {
   'e11.9': { canonical: 'Type 2 Diabetes Mellitus', confidence: 0.95, code: 'E11.9' },
   i10: { canonical: 'Hypertension', confidence: 0.95, code: 'I10' },
+  'e78.5': { canonical: 'Hyperlipidemia', confidence: 0.92, code: 'E78.5' },
   diabetes: { canonical: 'Type 2 Diabetes Mellitus', confidence: 0.84 },
   'kencing manis': { canonical: 'Type 2 Diabetes Mellitus', confidence: 0.87 },
   hipertensi: { canonical: 'Hypertension', confidence: 0.87 },
+  'hipertensi stadium 1': { canonical: 'Hypertension Stage 1', confidence: 0.9 },
   'type 2 diabetes mellitus': { canonical: 'Type 2 Diabetes Mellitus', confidence: 0.9 },
+  dislipidemia: { canonical: 'Hyperlipidemia', confidence: 0.88 },
+  hyperlipidemia: { canonical: 'Hyperlipidemia', confidence: 0.95 },
+  'essential hypertension': { canonical: 'Hypertension', confidence: 0.93 },
   ckd: { canonical: 'Chronic Kidney Disease', confidence: 0.72 }
 };
 
@@ -24,7 +31,8 @@ const medicationDictionary: Record<string, { canonical: string; confidence: numb
   glucophage: { canonical: 'Metformin', confidence: 0.88 },
   metformin: { canonical: 'Metformin', confidence: 0.93 },
   norvasc: { canonical: 'Amlodipine', confidence: 0.86 },
-  amlodipine: { canonical: 'Amlodipine', confidence: 0.93 }
+  amlodipine: { canonical: 'Amlodipine', confidence: 0.93 },
+  simvastatin: { canonical: 'Simvastatin', confidence: 0.94 }
 };
 
 const allergyDictionary: Record<string, { canonical: string; confidence: number }> = {
@@ -199,11 +207,11 @@ export function runTranslation(selectedSources: SourceSystem[]): CanonicalRecord
 
   const canonical: CanonicalRecord = {
     patient: {
-      identifiers: ['MRN-77812', 'SIMRS-77812', 'EXT-77812'],
+      identifiers: ['MRN-49281', 'SIMRS-49281', 'EXT-49281'],
       demographics: {
         fullName: String(reference.payload.name ?? (reference.payload as any).nama ?? (reference.payload as any).patient?.fullName ?? 'Unknown'),
-        dob: '1984-03-12',
-        sex: 'Female',
+        dob: '1993-05-15',
+        sex: 'Male',
         language: 'Bahasa Indonesia'
       }
     },
@@ -275,6 +283,118 @@ export function buildExportSummary(record: CanonicalRecord) {
     unresolvedConflicts: record.conflicts.filter((c) => !c.resolved),
     provenanceFooter: 'This packet includes source-level provenance and mapping confidence for every section.'
   };
+}
+
+export function generateClinicalSummary(record: CanonicalRecord): ClinicalSummary {
+  const dob = new Date(record.patient.demographics.dob);
+  const now = new Date();
+  const age = Math.floor((now.getTime() - dob.getTime()) / (365.25 * 24 * 60 * 60 * 1000));
+  const gender = record.patient.demographics.sex;
+
+  const uniqueConditions = Array.from(new Set(record.conditions.map(c => c.canonicalName)));
+  const bpObservations = record.observations.filter(o => o.type === 'bloodPressure');
+  
+  const bpTrend = analyzeBPTrend(bpObservations);
+  const insights: ClinicalInsight[] = [];
+  const riskFlags: string[] = [];
+
+  // Generate insights based on conditions
+  if (uniqueConditions.includes('Hypertension')) {
+    if (bpTrend === 'improving') {
+      insights.push({
+        type: 'improvement',
+        message: 'Tekanan darah membaik dalam 2 bulan terakhir',
+        severity: 'info',
+        basedOn: bpObservations.map(o => o.provenance.source)
+      });
+    } else if (bpTrend === 'worsening') {
+      insights.push({
+        type: 'alert',
+        message: 'Tren tekanan darah meningkat - perlu evaluasi',
+        severity: 'warning',
+        basedOn: bpObservations.map(o => o.provenance.source)
+      });
+      riskFlags.push('Hypertension uncontrolled');
+    }
+  }
+
+  if (uniqueConditions.includes('Type 2 Diabetes Mellitus')) {
+    const hasCKD = uniqueConditions.includes('Chronic Kidney Disease');
+    if (hasCKD) {
+      insights.push({
+        type: 'alert',
+        message: 'Pasien dengan DM dan komplikasi ginjal - monitor fungsi renal',
+        severity: 'warning',
+        basedOn: ['Combined diagnosis analysis']
+      });
+      riskFlags.push('DM with renal complication');
+    }
+  }
+
+  // Check for medication conflicts
+  const hasAllergyConflict = record.conflicts.some(c => c.category === 'Allergy' && !c.resolved);
+  if (hasAllergyConflict) {
+    insights.push({
+      type: 'alert',
+      message: 'Konflik alergi terdeteksi - verifikasi diperlukan',
+      severity: 'critical',
+      basedOn: ['Allergy reconciliation']
+    });
+    riskFlags.push('Unresolved allergy conflict');
+  }
+
+  // Add stable conditions
+  if (insights.length === 0) {
+    insights.push({
+      type: 'stable',
+      message: 'Kondisi stabil, tidak ada perubahan signifikan',
+      severity: 'info',
+      basedOn: ['Latest encounter data']
+    });
+  }
+
+  return {
+    demographics: {
+      age,
+      gender,
+      displayText: `${gender === 'Male' ? 'Laki-laki' : 'Perempuan'}, ${age} tahun`
+    },
+    primaryConditions: uniqueConditions,
+    bpTrend,
+    keyInsights: insights,
+    riskFlags,
+    lastUpdated: nowIso()
+  };
+}
+
+function analyzeBPTrend(observations: CanonicalRecord['observations']): 'improving' | 'worsening' | 'stable' | 'unknown' {
+  const bpReadings = observations
+    .filter(o => o.type === 'bloodPressure')
+    .map(o => {
+      const match = o.value.match(/(\d+)\/(\d+)/);
+      if (!match) return null;
+      return {
+        systolic: parseInt(match[1]),
+        diastolic: parseInt(match[2]),
+        timestamp: o.provenance.timestamp
+      };
+    })
+    .filter((o): o is NonNullable<typeof o> => o !== null)
+    .sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
+
+  if (bpReadings.length < 2) return 'unknown';
+
+  const first = bpReadings[0];
+  const last = bpReadings[bpReadings.length - 1];
+  
+  const firstAvg = (first.systolic + first.diastolic) / 2;
+  const lastAvg = (last.systolic + last.diastolic) / 2;
+  
+  const diff = lastAvg - firstAvg;
+  
+  if (diff < -3) return 'improving';
+  if (diff > 3) return 'worsening';
+  return 'stable';
 }
 
 const provenance = (source: RawSourceRecord) => ({

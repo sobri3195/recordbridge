@@ -6,72 +6,89 @@ export const RAW_SOURCES: RawSourceRecord[] = [
     recordId: 'A-1001',
     updatedAt: '2026-01-14T08:30:00Z',
     payload: {
-      patient_id: 'MRN-77812',
-      name: 'Siti Rahmawati',
-      dob: '1984-03-12',
-      sex: 'Female',
+      patient_id: 'MRN-49281',
+      name: 'Budi Santoso',
+      dob: '1993-05-15',
+      sex: 'Male',
       language: 'id',
-      BP: '120/80',
-      hr: 76,
-      diagnosis_icd10: ['E11.9', 'I10'],
-      allergies: ['Penicillin'],
+      BP: '135/85',
+      hr: 72,
+      weight_kg: 78,
+      height_cm: 172,
+      diagnosis_icd10: ['I10', 'E78.5'],
+      allergies: ['No Known Allergies'],
       meds: [
-        { brand: 'Glucophage', dose: '500mg', route: 'PO', freq: 'BID' },
-        { generic: 'Amlodipine', dose: '5 mg', route: 'PO', freq: 'OD' }
+        { generic: 'Amlodipine', dose: '5 mg', route: 'PO', freq: 'OD' },
+        { generic: 'Simvastatin', dose: '20mg', route: 'PO', freq: 'HS' }
       ],
       encounters: [
-        { date: '2026-01-10T07:00:00Z', type: 'Outpatient', reason: 'Diabetes follow-up' }
+        { date: '2026-01-14T08:00:00Z', type: 'Outpatient', reason: 'Hypertension follow-up' },
+        { date: '2025-11-20T09:00:00Z', type: 'Outpatient', reason: 'Annual checkup' }
       ],
-      labs: [{ ts: '2026-01-10T08:15:00Z', name: 'HbA1c', value: '7.8', unit: '%' }]
+      labs: [
+        { ts: '2026-01-14T08:15:00Z', name: 'LDL Cholesterol', value: '142', unit: 'mg/dL' },
+        { ts: '2025-11-20T09:30:00Z', name: 'LDL Cholesterol', value: '156', unit: 'mg/dL' }
+      ]
     }
   },
   {
     source: 'SIMRS_B',
-    recordId: 'SIMRS-233',
+    recordId: 'SIMRS-49281',
     updatedAt: '2026-01-15T09:10:00Z',
     payload: {
-      no_rm: '77812',
-      nama: 'Siti Rahmawati',
-      tanggal_lahir: '12-03-1984',
-      jenis_kelamin: 'P',
+      no_rm: '49281',
+      nama: 'Budi Santoso',
+      tanggal_lahir: '15-05-1993',
+      jenis_kelamin: 'L',
       bahasa: 'Bahasa Indonesia',
-      Tensi: { sistolik: 118, diastolik: 82, unit: 'mmHg' },
-      suhu: 36.9,
-      diagnosa: ['kencing manis', 'hipertensi'],
-      alergi: ['Tidak ada alergi / NKA'],
+      Tensi: { sistolik: 128, diastolik: 82, unit: 'mmHg' },
+      berat_badan: 77,
+      tinggi_badan: 172,
+      suhu: 36.7,
+      diagnosa: ['hipertensi stadium 1', 'dislipidemia'],
+      alergi: ['tidak ada alergi'],
       obat_aktif: [
-        { nama_obat: 'metformin', dosis: '0.5 g', frekuensi: '2x sehari', rute: 'oral' },
-        { nama_obat: 'Norvasc', dosis: '10mg', frekuensi: '1x sehari', rute: 'oral' }
+        { nama_obat: 'Amlodipine', dosis: '5 mg', frekuensi: '1x sehari', rute: 'oral' },
+        { nama_obat: 'Simvastatin', dosis: '20 mg', frekuensi: 'malam hari', rute: 'oral' }
       ],
       kunjungan: [
-        { waktu: '2026-01-12T05:30:00Z', jenis: 'IGD', keluhan: 'Pusing' }
+        { waktu: '2026-01-15T09:00:00Z', jenis: 'Poli Jantung', keluhan: 'Kontrol rutin hipertensi' },
+        { waktu: '2025-12-10T10:30:00Z', jenis: 'Poli Jantung', keluhan: 'Tekanan darah tinggi' }
       ],
-      lab_result: [{ waktu: '2026-01-12T06:00:00Z', pemeriksaan: 'GDP', hasil: '180', satuan: 'mg/dL' }]
+      lab_result: [
+        { waktu: '2026-01-15T09:30:00Z', pemeriksaan: 'Kolesterol LDL', hasil: '138', satuan: 'mg/dL' },
+        { waktu: '2025-12-10T11:00:00Z', pemeriksaan: 'Kolesterol LDL', hasil: '148', satuan: 'mg/dL' }
+      ]
     }
   },
   {
     source: 'CLINIC_C',
-    recordId: 'CLN-909',
+    recordId: 'CLN-49281',
     updatedAt: '2026-01-16T11:45:00Z',
     payload: {
-      id: 'EXT-77812',
+      id: 'EXT-49281',
       patient: {
-        fullName: 'Siti R.',
-        birthDate: '1984/03/12',
-        gender: 'F'
+        fullName: 'Budi S.',
+        birthDate: '1993/05/15',
+        gender: 'M'
       },
       vitals: {
-        blood_pressure_systolic: 122,
-        blood_pressure_diastolic: 78,
-        pulse_bpm: 80
+        blood_pressure_systolic: 126,
+        blood_pressure_diastolic: 80,
+        pulse_bpm: 70,
+        weight_kg: 76.5
       },
-      dx_text: ['type 2 diabetes mellitus', 'possible CKD stage 2'],
-      allergy_status: [{ substance: 'penicillin', reaction: 'rash' }],
-      medication_list: ['Metformin 500 mg twice daily', 'Amlodipine 5 mg daily'],
+      dx_text: ['essential hypertension', 'hyperlipidemia'],
+      allergy_status: [{ substance: 'none', reaction: 'N/A' }],
+      medication_list: ['Amlodipine 5 mg daily', 'Simvastatin 20 mg at bedtime'],
       visits: [
-        { at: '2026-01-16T10:00:00Z', setting: 'Telemedicine', note: 'Blood sugar review' }
+        { at: '2026-01-16T11:00:00Z', setting: 'Telemedicine', note: 'BP improving, continue current regimen' },
+        { at: '2025-10-05T14:00:00Z', setting: 'Clinic', note: 'Newly diagnosed hypertension' }
       ],
-      results: [{ at: '2026-01-16T10:20:00Z', test: 'Creatinine', result: '1.1', unit: 'mg/dL' }]
+      results: [
+        { at: '2026-01-16T11:30:00Z', test: 'LDL', result: '135', unit: 'mg/dL' },
+        { at: '2025-10-05T15:00:00Z', test: 'LDL', result: '162', unit: 'mg/dL' }
+      ]
     }
   }
 ];
