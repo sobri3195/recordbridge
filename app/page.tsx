@@ -97,7 +97,8 @@ export default function Home() {
           <h1 className="text-4xl font-bold leading-tight">Connect any EHR. Translate schema-less.<br />Get a unified patient record.</h1>
           <p className="mt-4 max-w-2xl text-lg text-blue-100">Production-style demo for stakeholders: deterministic AI-like mapping, conflict handling, provenance, and referral export.</p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link href="/demo" className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-blue-700 shadow-lg hover:bg-blue-50 transition-colors">🚀 Open Demo</Link>
+            <Link href="/features" className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-blue-700 shadow-lg hover:bg-blue-50 transition-colors">🚀 Core Features</Link>
+            <Link href="/demo" className="rounded-xl border border-white/40 bg-white/10 px-5 py-3 text-sm font-semibold backdrop-blur hover:bg-white/20 transition-colors">🧪 Open Demo</Link>
             <Link href="/how-it-works" className="rounded-xl border border-white/40 bg-white/10 px-5 py-3 text-sm font-semibold backdrop-blur hover:bg-white/20 transition-colors">📖 How it works</Link>
           </div>
         </div>
@@ -130,6 +131,34 @@ export default function Home() {
                 <p className="mt-1 text-sm text-white/80">{s.desc}</p>
               </div>
               <div className="absolute -right-4 -bottom-4 text-8xl opacity-20 transition-transform group-hover:scale-110">→</div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* 5 Core Features Section */}
+      <section className="card bg-gradient-to-br from-slate-50 to-white">
+        <h2 className="mb-4 text-xl font-bold">🚀 5 Core Technologies</h2>
+        <p className="mb-6 text-slate-600">RecordBridge dibangun di atas 5 engine inti untuk interoperabilitas data kesehatan yang komprehensif.</p>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {[
+            { icon: '🔗', title: 'Auto-Connector Engine', desc: 'Auto-detect SIMRS schema & plug-and-play connectors', color: 'blue', href: '/features/auto-connector' },
+            { icon: '🧠', title: 'AI Mapping Engine', desc: 'Smart field mapping with learning capabilities', color: 'purple', href: '/features/ai-mapping' },
+            { icon: '🏥', title: 'Standardization Layer', desc: 'FHIR, SATUSEHAT, ICD-10, LOINC, SNOMED', color: 'emerald', href: '/features/standardization' },
+            { icon: '⚡', title: 'Real-Time Sync', desc: 'Event-driven multi-hospital synchronization', color: 'amber', href: '/features/realtime-sync' },
+            { icon: '🌐', title: 'API Gateway', desc: 'Single API for all healthcare integrations', color: 'indigo', href: '/features/api-gateway' },
+          ].map((feature) => (
+            <Link
+              key={feature.title}
+              href={feature.href}
+              className={`group rounded-xl border-2 border-${feature.color}-200 bg-${feature.color}-50 p-4 transition-all hover:border-${feature.color}-400`}
+            >
+              <span className="text-2xl">{feature.icon}</span>
+              <h3 className={`mt-2 font-semibold text-${feature.color}-800`}>{feature.title}</h3>
+              <p className={`mt-1 text-sm text-${feature.color}-700`}>{feature.desc}</p>
+              <span className={`mt-3 inline-block text-sm font-medium text-${feature.color}-600 group-hover:text-${feature.color}-800`}>
+                Explore →
+              </span>
             </Link>
           ))}
         </div>
@@ -244,9 +273,10 @@ export default function Home() {
       {/* Footer CTA */}
       <section className="rounded-2xl bg-slate-900 p-8 text-center text-white">
         <h2 className="text-2xl font-bold">Siap Transformasi Healthcare Data?</h2>
-        <p className="mt-2 text-slate-300">Coba demo interaktif kami untuk melihat RecordBridge dalam aksi.</p>
-        <div className="mt-6 flex justify-center gap-4">
-          <Link href="/demo" className="rounded-xl bg-blue-500 px-6 py-3 font-semibold hover:bg-blue-600 transition-colors">🚀 Mulai Demo</Link>
+        <p className="mt-2 text-slate-300">Jelajahi 5 core teknologi kami untuk interoperabilitas data kesehatan Indonesia.</p>
+        <div className="mt-6 flex flex-wrap justify-center gap-4">
+          <Link href="/features" className="rounded-xl bg-blue-500 px-6 py-3 font-semibold hover:bg-blue-600 transition-colors">🚀 Core Features</Link>
+          <Link href="/demo" className="rounded-xl border border-slate-600 px-6 py-3 font-semibold hover:bg-slate-800 transition-colors">🧪 Demo Interaktif</Link>
           <Link href="/how-it-works" className="rounded-xl border border-slate-600 px-6 py-3 font-semibold hover:bg-slate-800 transition-colors">📖 Pelajari</Link>
         </div>
       </section>
