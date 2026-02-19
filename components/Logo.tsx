@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 interface LogoProps {
   size?: 'sm' | 'md' | 'lg';
-  variant?: 'icon' | 'full';
+  variant?: 'icon' | 'full' | 'adaptive';
   className?: string;
 }
 
@@ -35,6 +35,27 @@ export default function Logo({ size = 'md', variant = 'full', className = '' }: 
     return (
       <div className={clsx('relative shrink-0', config.icon, className)}>
         <Image src="/favicon.svg" alt="RecordBridge logo" fill sizes={config.iconSizeHint} className="object-contain" priority />
+      </div>
+    );
+  }
+
+  if (variant === 'adaptive') {
+    return (
+      <div className={clsx('relative shrink-0', className)}>
+        <div className={clsx('relative sm:hidden', config.icon)}>
+          <Image src="/favicon.svg" alt="RecordBridge logo" fill sizes={config.iconSizeHint} className="object-contain" priority />
+        </div>
+        <div className={clsx('relative hidden sm:block', config.full)}>
+          <Image
+            src="/logo.svg"
+            alt="RecordBridge"
+            width={280}
+            height={92}
+            sizes={config.fullSizeHint}
+            className="h-auto w-full"
+            priority
+          />
+        </div>
       </div>
     );
   }
