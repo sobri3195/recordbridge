@@ -2,10 +2,10 @@ import Link from 'next/link';
 
 const steps = [
   { 
-    title: '1. Ingest', 
+    title: '1. Upload', 
     icon: '📥',
-    text: 'Pull records from EHR A, SIMRS B, and Clinic C with heterogeneous schemas.',
-    details: 'Supports SATUSEHAT, BPJS, SIMRS lokal, Excel, Google Sheets, and WhatsApp referrals.'
+    text: 'Upload data from berbagai sumber dengan cara yang simpel: drag-and-drop atau pilih file.',
+    details: 'Mendukung PDF, Excel (XLS/XLSX), CSV, JSON, SATUSEHAT, BPJS, SIMRS lokal, dan Google Sheets.'
   },
   { 
     title: '2. Normalize', 
@@ -38,9 +38,23 @@ export default function HowItWorksPage() {
     <div className="space-y-8">
       <section className="card bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
         <h1 className="text-2xl font-bold">📖 How RecordBridge Works</h1>
-        <p className="mt-2 text-blue-100">Pipeline overview for technical and non-technical stakeholders.</p>
+        <p className="mt-2 text-blue-100">Alur kerja dibuat sesederhana mungkin: upload → rapikan → gabungkan → cek konflik → export.</p>
         <div className="mt-4 flex gap-3">
           <Link href="/demo" className="rounded-lg bg-white px-4 py-2 text-sm font-semibold text-blue-700">🚀 Try Demo</Link>
+        </div>
+      </section>
+
+      <section className="card border border-blue-100 bg-blue-50/60">
+        <h2 className="text-lg font-semibold text-blue-900">🧾 Format Upload Fleksibel</h2>
+        <p className="mt-2 text-sm text-blue-800">
+          Supaya onboarding data lebih simpel, tim cukup upload file dari format yang sudah ada tanpa perlu ubah struktur manual dulu.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-2 text-xs font-medium">
+          {['PDF', 'Excel', 'CSV', 'JSON', 'Google Sheets', 'SATUSEHAT/BPJS API'].map((format) => (
+            <span key={format} className="rounded-full border border-blue-200 bg-white px-3 py-1 text-blue-700">
+              {format}
+            </span>
+          ))}
         </div>
       </section>
 
