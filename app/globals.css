@@ -7,7 +7,7 @@
 }
 
 body {
-  @apply bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 text-slate-900 antialiased;
+  @apply bg-gradient-to-br from-emerald-50 via-lime-50/40 to-teal-50/60 text-slate-900 antialiased;
 }
 
 .card {
@@ -15,7 +15,7 @@ body {
 }
 
 .card-gradient {
-  @apply rounded-2xl bg-gradient-to-br from-white via-white to-blue-50/50 p-6 shadow-xl shadow-blue-100/50 border border-blue-100/60;
+  @apply rounded-2xl bg-gradient-to-br from-white via-white to-emerald-50/60 p-6 shadow-xl shadow-emerald-100/50 border border-emerald-100/70;
 }
 
 .glass {
@@ -33,11 +33,11 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gradient-to-b from-blue-400 to-indigo-500 rounded-full shadow-md;
+  @apply bg-gradient-to-b from-emerald-400 to-teal-500 rounded-full shadow-md;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-gradient-to-b from-blue-500 to-indigo-600 scale-110;
+  @apply bg-gradient-to-b from-emerald-500 to-teal-600 scale-110;
 }
 
 /* Animation utilities */
@@ -67,8 +67,8 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+  0%, 100% { box-shadow: 0 0 18px rgba(16, 185, 129, 0.22); }
+  50% { box-shadow: 0 0 32px rgba(16, 185, 129, 0.38); }
 }
 
 @keyframes gradient-shift {
@@ -115,7 +115,7 @@ body {
 
 /* Smooth transitions */
 * {
-  @apply transition-all duration-300 ease-out;
+  @apply transition-all duration-200 ease-out;
 }
 
 /* Better focus states */
@@ -124,16 +124,16 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  @apply outline-none ring-4 ring-blue-400/50 ring-offset-2 ring-offset-white;
+  @apply outline-none ring-4 ring-emerald-400/50 ring-offset-2 ring-offset-white;
 }
 
 /* Enhanced button styles */
 .btn-primary {
-  @apply relative overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/40 hover:scale-105 hover:from-blue-700 hover:to-indigo-700 active:scale-95;
+  @apply relative overflow-hidden rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/35 hover:scale-[1.03] hover:from-emerald-700 hover:to-teal-700 active:scale-95;
 }
 
 .btn-secondary {
-  @apply relative overflow-hidden rounded-xl border-2 border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-lg shadow-slate-200/50 transition-all duration-300 hover:border-blue-300 hover:shadow-xl hover:shadow-blue-100/50 hover:scale-105 hover:bg-blue-50/50 active:scale-95;
+  @apply relative overflow-hidden rounded-xl border-2 border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-lg shadow-slate-200/50 transition-all duration-300 hover:border-emerald-300 hover:shadow-xl hover:shadow-emerald-100/50 hover:scale-[1.03] hover:bg-emerald-50/50 active:scale-95;
 }
 
 .btn-ghost {
@@ -146,7 +146,7 @@ textarea:focus-visible {
 }
 
 .hover-glow:hover {
-  @apply shadow-[0_0_30px_rgba(59,130,246,0.3)];
+  @apply shadow-[0_0_24px_rgba(16,185,129,0.22)];
 }
 
 /* Badge styles */
@@ -155,7 +155,7 @@ textarea:focus-visible {
 }
 
 .badge-blue {
-  @apply badge bg-blue-100 text-blue-700;
+  @apply badge bg-teal-100 text-teal-700;
 }
 
 .badge-green {
@@ -176,11 +176,11 @@ textarea:focus-visible {
 
 /* Gradient text */
 .text-gradient {
-  @apply bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent;
 }
 
 .text-gradient-blue {
-  @apply bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent;
 }
 
 /* Pattern backgrounds */

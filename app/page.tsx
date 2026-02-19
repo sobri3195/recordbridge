@@ -88,12 +88,12 @@ export default function Home() {
   return (
     <div className="space-y-16">
       {/* Hero Section */}
-      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 p-8 text-white shadow-2xl animate-gradient">
+      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-700 via-emerald-600 to-teal-700 p-8 text-white shadow-2xl animate-gradient">
         {/* Animated background patterns */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtOS45NDEgMC0xOCA4LjA1OS0xOCAxOHM4LjA1OSAxOCAxOCAxOCAxOC04LjA1OSAxOC0xOC04LjA1OS0xOC0xOC0xOHptMCAzMmMtNy43MzIgMC0xNC02LjI2OC0xNC0xNHM2LjI2OC0xNCAxNC0xNCAxNCA2LjI2OCAxNCAxNC02LjI2OCAxNC0xNCAxNHoiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjA1Ii8+PC9nPjwvc3ZnPg==')] opacity-20 animate-float"></div>
           <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl animate-pulse-glow"></div>
-          <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-purple-500/20 blur-3xl animate-pulse-glow" style={{animationDelay: '1s'}}></div>
+          <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-emerald-400/20 blur-3xl animate-pulse-glow" style={{animationDelay: '1s'}}></div>
         </div>
         
         <div className="relative z-10">
@@ -103,12 +103,12 @@ export default function Home() {
             </span>
           </div>
           <h1 className="mb-6 text-4xl font-extrabold leading-tight animate-slideInLeft md:text-5xl lg:text-6xl">
-            Connect any <span className="text-cyan-300">EHR</span>. <br />
-            Translate <span className="text-purple-300">schema-less</span>.<br />
-            Get a <span className="bg-gradient-to-r from-yellow-200 to-amber-300 bg-clip-text text-transparent">unified</span> patient record.
+            Connect any <span className="text-emerald-200">EHR</span>. <br />
+            Translate <span className="text-lime-200">schema-less</span>.<br />
+            Get a <span className="bg-gradient-to-r from-emerald-100 to-lime-200 bg-clip-text text-transparent">unified</span> patient record.
           </h1>
-          <p className="mb-8 max-w-2xl text-lg text-blue-100/90 animate-slideInRight">
-            Production-style demo for stakeholders: deterministic AI-like mapping, conflict handling, provenance, and referral export.
+          <p className="mb-8 max-w-2xl text-lg text-emerald-50/90 animate-slideInRight">
+            Production-style demo for stakeholders: deterministic smart mapping, conflict handling, provenance, and referral export yang lebih human-friendly.
           </p>
           <div className="flex flex-wrap gap-4 animate-scaleIn">
             <Link href="/features" className="btn-primary group">
@@ -169,7 +169,7 @@ export default function Home() {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
               <div className="relative z-10">
-                <span className="mb-4 block text-5xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">{s.icon}</span>
+                <span className="mb-4 block text-5xl transition-transform duration-500 group-hover:scale-105">{s.icon}</span>
                 <p className="text-xl font-bold">{s.name}</p>
                 <p className="mt-2 text-sm text-white/90">{s.desc}</p>
               </div>
@@ -219,14 +219,14 @@ export default function Home() {
       <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
         {features.map((f, index) => (
           <article key={f.id} className={`card hover-lift group stagger-${(index % 5) + 1} animate-fadeIn`}>
-            <div className="mb-4 inline-flex rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-100 p-4 shadow-inner transition-transform duration-300 group-hover:scale-110">
+            <div className="mb-4 inline-flex rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-100 p-4 shadow-inner transition-transform duration-300 group-hover:scale-110">
               <span className="text-4xl">{f.icon}</span>
             </div>
             <h2 className="text-lg font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">{f.title}</h2>
             <p className="mt-3 text-sm text-slate-600 leading-relaxed">{f.desc}</p>
             <Link 
               href={`/demo#${f.id}`} 
-              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition-all group-hover:gap-3 group-hover:text-blue-700"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 transition-all group-hover:gap-3 group-hover:text-emerald-800"
             >
               See it in demo
               <span className="transition-transform group-hover:translate-x-1">→</span>
@@ -257,16 +257,16 @@ export default function Home() {
                 <span className="font-bold text-slate-800">{source.name}</span>
               </div>
               {i < 3 && (
-                <span className="mx-3 text-2xl text-slate-400 transition-transform hover:scale-125 hover:text-blue-600">→</span>
+                <span className="mx-3 text-2xl text-slate-400 transition-transform hover:scale-125 hover:text-emerald-700">→</span>
               )}
             </div>
           ))}
           <div className="flex items-center">
-            <div className="mx-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 text-white shadow-lg shadow-blue-500/30 animate-pulse-glow">
+            <div className="mx-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-4 text-white shadow-lg shadow-emerald-500/30 animate-pulse-glow">
               <span className="text-2xl font-bold">RecordBridge</span>
             </div>
-            <span className="mx-3 text-2xl text-slate-400 transition-transform hover:scale-125 hover:text-blue-600">→</span>
-            <div className="group card hover-lift flex flex-col items-center bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-5 text-white shadow-2xl shadow-blue-500/40">
+            <span className="mx-3 text-2xl text-slate-400 transition-transform hover:scale-125 hover:text-emerald-700">→</span>
+            <div className="group card hover-lift flex flex-col items-center bg-gradient-to-r from-emerald-600 to-teal-600 px-8 py-5 text-white shadow-2xl shadow-emerald-500/35">
               <div className="mb-2 rounded-xl bg-white/20 p-2 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
                 <span className="text-3xl">📋</span>
               </div>
@@ -353,7 +353,7 @@ export default function Home() {
               <tr>
                 <th className="px-6 py-4 font-bold text-slate-800">Feature</th>
                 <th className="px-6 py-4 text-center font-bold text-slate-700">SIMRS Biasa</th>
-                <th className="px-6 py-4 text-center font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">RecordBridge</th>
+                <th className="px-6 py-4 text-center font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">RecordBridge</th>
               </tr>
             </thead>
             <tbody>
@@ -364,7 +364,7 @@ export default function Home() {
                 >
                   <td className="px-6 py-4 font-medium text-slate-800">{row.feature}</td>
                   <td className="px-6 py-4 text-center text-slate-600">{row.simrs}</td>
-                  <td className="px-6 py-4 text-center font-bold text-blue-600">{row.recordbridge}</td>
+                  <td className="px-6 py-4 text-center font-bold text-emerald-700">{row.recordbridge}</td>
                 </tr>
               ))}
             </tbody>
@@ -376,7 +376,7 @@ export default function Home() {
       <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 p-10 text-center text-white shadow-2xl animate-gradient">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtOS45NDEgMC0xOCA4LjA1OS0xOCAxOHM4LjA1OSAxOCAxOCAxOCAxOC04LjA1OSAxOC0xOC04LjA1OS0xOC0xOC0xOHptMCAzMmMtNy43MzIgMC0xNC02LjI2OC0xNC0xNHM2LjI2OC0xNCAxNC0xNCAxNCA2LjI2OCAxNCAxNC02LjI2OCAxNC0xNCAxNHoiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjAzIi8+PC9nPjwvc3ZnPg==')] opacity-30"></div>
         <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl animate-pulse-glow"></div>
-        <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-purple-500/20 blur-3xl animate-pulse-glow" style={{animationDelay: '1s'}}></div>
+        <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-emerald-400/20 blur-3xl animate-pulse-glow" style={{animationDelay: '1s'}}></div>
         
         <div className="relative z-10">
           <div className="mb-4 inline-flex animate-float items-center rounded-full bg-white/10 px-6 py-2 backdrop-blur-sm">
@@ -386,7 +386,7 @@ export default function Home() {
           <h2 className="mb-4 text-3xl font-extrabold md:text-4xl">
             Siap <span className="bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">Transformasi</span> Healthcare Data?
           </h2>
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-blue-100/90">
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-emerald-50/90">
             Jelajahi 5 core teknologi kami untuk interoperabilitas data kesehatan Indonesia.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
