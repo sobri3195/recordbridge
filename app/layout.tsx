@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
             <Link href="/" className="group flex items-center gap-3">
               <div className="relative">
-                <Logo size="sm" variant="full" className="transition-opacity duration-300 group-hover:opacity-90" />
+                <Logo size="sm" variant="adaptive" className="transition-opacity duration-300 group-hover:opacity-90" />
                 <div className="absolute inset-0 rounded-full bg-emerald-500/20 blur-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
               </div>
               <span className="hidden rounded-full bg-gradient-to-r from-emerald-100 to-teal-100 px-3 py-1 text-xs font-bold text-emerald-700 md:inline-block shadow-sm">
@@ -60,7 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <Logo size="sm" variant="full" />
+                  <Logo size="sm" variant="adaptive" />
                 </div>
                 <p className="text-sm text-slate-600 leading-relaxed">
                   Schema-less EHR/SIMRS translator untuk integritas data kesehatan Indonesia.
