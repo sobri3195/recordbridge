@@ -36,7 +36,15 @@ export function RawViewer({ activeTab, setActiveTab, selectedSources, onToggleSo
         </span>
       </div>
       
-      <p className="mb-4 text-sm text-slate-600">Select inputs to merge. The raw schemas intentionally differ to simulate real-world EHR fragmentation across different systems.</p>
+      <p className="mb-4 text-sm text-slate-600">Select inputs to merge. Untuk implementasi nyata, data bisa masuk lewat upload PDF, Excel, CSV, JSON, atau koneksi API.</p>
+
+      <div className="mb-4 flex flex-wrap gap-2">
+        {['PDF', 'Excel', 'CSV', 'JSON', 'API Connector'].map((format) => (
+          <span key={format} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">
+            {format}
+          </span>
+        ))}
+      </div>
       
       <div className="mb-4 flex flex-wrap gap-2">
         {(Object.keys(SOURCE_LABELS) as SourceSystem[]).map((tab) => (
