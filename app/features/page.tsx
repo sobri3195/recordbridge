@@ -88,10 +88,13 @@ const CORE_FEATURES = [
 
 export default function FeaturesPage() {
   return (
-    <div className="space-y-8">
-      <div className="text-center">
-        <h1 className="text-3xl font-bold text-slate-800">🚀 RecordBridge Core Features</h1>
-        <p className="mt-2 text-slate-600">5 Core Technologies untuk Interoperabilitas Data Kesehatan Indonesia</p>
+    <div className="space-y-12">
+      <div className="text-center animate-fadeIn">
+        <span className="badge-green mb-4 inline-block">🚀 Technology</span>
+        <h1 className="mb-4 text-4xl font-extrabold md:text-5xl">
+          <span className="text-gradient">RecordBridge Core Features</span>
+        </h1>
+        <p className="max-w-2xl mx-auto text-lg text-slate-600">5 Core Technologies untuk Interoperabilitas Data Kesehatan Indonesia</p>
       </div>
 
       <div className="grid gap-6">
@@ -99,36 +102,43 @@ export default function FeaturesPage() {
           <Link
             key={feature.id}
             href={feature.href}
-            className="group card hover:border-blue-300 transition-all"
+            className={`group card hover-lift stagger-${(index % 5) + 1} animate-fadeIn`}
           >
             <div className="flex gap-6">
-              <div className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-${feature.color}-100 text-3xl`}>
+              <div className={`flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-${feature.color}-100 to-${feature.color}-200 text-4xl shadow-inner transition-transform duration-300 group-hover:scale-110`}>
                 {feature.icon}
               </div>
               <div className="flex-1">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-sm font-medium text-slate-500">{String(index + 1).padStart(2, '0')}</span>
-                    <h2 className="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <span className="mb-2 inline-block rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <h2 className="text-2xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent group-hover:from-blue-700 group-hover:to-indigo-600 transition-all">
                       {feature.title}
                     </h2>
                   </div>
-                  <span className="rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-600 group-hover:bg-blue-100 group-hover:text-blue-700 transition-colors">
+                  <span className="badge-blue hidden sm:inline-flex">
                     Explore →
                   </span>
                 </div>
-                <p className="mt-1 text-slate-600">{feature.shortDesc}</p>
-                <p className="mt-2 text-sm text-slate-500">{feature.description}</p>
+                <p className="mt-2 text-base font-semibold text-slate-700">{feature.shortDesc}</p>
+                <p className="mt-2 text-sm text-slate-600 leading-relaxed">{feature.description}</p>
                 
                 <div className="mt-4 flex flex-wrap gap-2">
                   {feature.capabilities.slice(0, 4).map((cap, idx) => (
                     <span
                       key={idx}
-                      className={`rounded-full bg-${feature.color}-50 px-3 py-1 text-xs text-${feature.color}-700`}
+                      className={`rounded-full bg-gradient-to-r from-${feature.color}-50 to-${feature.color}-100 px-3 py-1.5 text-xs font-semibold text-${feature.color}-700 shadow-sm transition-transform hover:scale-105`}
                     >
                       ✓ {cap}
                     </span>
                   ))}
+                  {feature.capabilities.length > 4 && (
+                    <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">
+                      +{feature.capabilities.length - 4} more
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
@@ -136,22 +146,33 @@ export default function FeaturesPage() {
         ))}
       </div>
 
-      <div className="rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 p-8 text-white text-center">
-        <h2 className="text-2xl font-bold">Siap Integrasi dengan SIMRS Anda?</h2>
-        <p className="mt-2 text-blue-100">Coba demo interaktif untuk melihat RecordBridge dalam aksi</p>
-        <div className="mt-6 flex justify-center gap-4">
-          <Link
-            href="/demo"
-            className="rounded-xl bg-white px-6 py-3 font-semibold text-blue-700 hover:bg-blue-50 transition-colors"
-          >
-            🚀 Open Demo
-          </Link>
-          <Link
-            href="/how-it-works"
-            className="rounded-xl border border-white/40 bg-white/10 px-6 py-3 font-semibold backdrop-blur hover:bg-white/20 transition-colors"
-          >
-            📖 How it Works
-          </Link>
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 p-10 text-center text-white shadow-2xl animate-gradient">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtOS45NDEgMC0xOCA4LjA1OS0xOCAxOHM4LjA1OSAxOCAxOCAxOCAxOC04LjA1OSAxOC0xOC04LjA1OS0xOC0xOC0xOHptMCAzMmMtNy43MzIgMC0xNC02LjI2OC0xNC0xNHM2LjI2OC0xNCAxNC0xNCAxNCA2LjI2OCAxNCAxNC02LjI2OCAxNC0xNCAxNHoiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjAzIi8+PC9nPjwvc3ZnPg==')] opacity-20"></div>
+        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl animate-pulse-glow"></div>
+        <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-purple-500/20 blur-3xl animate-pulse-glow" style={{animationDelay: '1s'}}></div>
+        
+        <div className="relative z-10">
+          <h2 className="text-3xl font-extrabold">Siap Integrasi dengan SIMRS Anda?</h2>
+          <p className="mt-3 text-lg text-blue-100/90">Coba demo interaktif untuk melihat RecordBridge dalam aksi</p>
+          <div className="mt-8 flex justify-center gap-4">
+            <Link
+              href="/demo"
+              className="btn-primary group"
+            >
+              <span className="flex items-center gap-2">
+                🚀 Open Demo
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </span>
+            </Link>
+            <Link
+              href="/how-it-works"
+              className="btn-secondary"
+            >
+              <span className="flex items-center gap-2">
+                📖 How it Works
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

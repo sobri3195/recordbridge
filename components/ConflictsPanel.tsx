@@ -43,37 +43,57 @@ export function ConflictsPanel({ record, onResolve }: Props) {
     };
   };
 
-  if (!record) return <section id="conflicts" className="card text-sm text-slate-500">No conflict analysis yet.</section>;
+  if (!record) return (
+    <section id="conflicts" className="card-gradient">
+      <div className="rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 p-6 text-center">
+        <span className="mb-2 block text-4xl opacity-50">🔄</span>
+        <p className="text-sm text-slate-500">No conflict analysis yet.</p>
+      </div>
+    </section>
+  );
 
   return (
-    <section id="conflicts" className="card">
-      <div className="mb-3 flex items-center gap-2">
-        <h3 className="text-lg font-semibold">🔄 Conflict Resolution</h3>
-        <span className="rounded-full bg-rose-100 px-2 py-0.5 text-xs font-medium text-rose-700">
+    <section id="conflicts" className="card-gradient animate-fadeIn">
+      <div className="mb-5 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="rounded-xl bg-gradient-to-br from-amber-100 to-orange-100 p-2 shadow-inner">
+            <span className="text-xl">🔄</span>
+          </div>
+          <h3 className="text-xl font-bold text-gradient">Conflict Resolution</h3>
+        </div>
+        <span className={`badge ${record.conflicts.filter(c => !c.resolved).length === 0 ? 'badge-green' : 'badge-red'}`}>
           {record.conflicts.filter(c => !c.resolved).length} unresolved
         </span>
       </div>
       
-      <div className="space-y-3">
+      <div className="space-y-4">
         {record.conflicts.length === 0 ? (
-          <div className="rounded-lg bg-emerald-50 p-4 text-center text-sm text-emerald-700">
-            ✨ No conflicts detected! Data sources are consistent.
+          <div className="card bg-gradient-to-br from-emerald-50 to-teal-50 border-emerald-200/60 p-6 text-center">
+            <div className="mb-3 inline-flex rounded-2xl bg-white p-3 shadow-md">
+              <span className="text-3xl">✨</span>
+            </div>
+            <p className="font-semibold text-emerald-700">No conflicts detected! Data sources are consistent.</p>
           </div>
         ) : (
-          record.conflicts.map((conf) => (
-            <div key={conf.id} className="rounded-lg border-2 border-slate-200 p-4 text-sm">
-              <div className="mb-3 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">{conflictIcons[conf.category]}</span>
+          record.conflicts.map((conf, index) => (
+            <div 
+              key={conf.id} 
+              className={`card hover-lift stagger-${(index % 5) + 1} animate-fadeIn ${conf.resolved ? 'bg-gradient-to-br from-emerald-50/50 to-teal-50/50 border-emerald-200/60' : 'border-rose-300/60'}`}
+            >
+              <div className="mb-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className={`rounded-xl p-2 shadow-inner ${conf.resolved ? 'bg-gradient-to-br from-emerald-100 to-teal-100' : 'bg-gradient-to-br from-rose-100 to-pink-100'}`}>
+                    <span className="text-lg">{conflictIcons[conf.category]}</span>
+                  </div>
                   <div>
-                    <p className="font-semibold text-slate-800">{conf.category}</p>
+                    <p className="font-bold text-slate-800">{conf.category}</p>
                     <p className="text-xs text-slate-600">{conf.field}</p>
                   </div>
                 </div>
-                <span className={`rounded-full px-3 py-1 text-xs font-medium ${
+                <span className={`rounded-full px-3 py-1 text-xs font-bold ${
                   conf.resolved 
-                    ? 'bg-emerald-100 text-emerald-700' 
-                    : 'bg-rose-100 text-rose-700'
+                    ? 'bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-700' 
+                    : 'bg-gradient-to-r from-rose-100 to-pink-100 text-rose-700'
                 }`}>
                   {conf.resolved ? '✅ Resolved' : '⚠️ Conflict'}
                 </span>
@@ -130,9 +150,11 @@ export function ConflictsPanel({ record, onResolve }: Props) {
                       setSelectedConflict(conf.id); 
                       setValue(recommendation?.value || conf.values[0]?.value || ''); 
                     }} 
-                    className="w-full rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
+                    className="btn-primary w-full"
                   >
-                    🔧 Resolve This Conflict
+                    <span className="flex items-center justify-center gap-2">
+                      🔧 Resolve This Conflict
+                    </span>
                   </button>
                 </div>
               )}
@@ -142,17 +164,17 @@ export function ConflictsPanel({ record, onResolve }: Props) {
       </div>
 
       {conflict && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-          <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
-            <h4 className="mb-4 text-lg font-semibold">Resolve {conflict.category} conflict</h4>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm animate-fadeIn">
+          <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl border border-slate-200 animate-scaleIn">
+            <h4 className="mb-5 text-xl font-bold text-gradient">Resolve {conflict.category} Conflict</h4>
             
-            <div className="space-y-4">
+            <div className="space-y-5">
               <div>
-                <label className="mb-1 block text-xs font-medium">Resolution strategy</label>
+                <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-600">Resolution strategy</label>
                 <select 
                   value={strategy} 
                   onChange={(e) => setStrategy(e.target.value as any)} 
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                  className="w-full rounded-xl border-2 border-slate-200 bg-white px-4 py-3 text-sm font-medium focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all"
                 >
                   <option value="choose_one">Choose one value</option>
                   <option value="keep_both">Keep both + note</option>
@@ -160,20 +182,20 @@ export function ConflictsPanel({ record, onResolve }: Props) {
               </div>
               
               <div>
-                <label className="mb-1 block text-xs font-medium">Value</label>
+                <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-600">Value</label>
                 <input 
                   value={value} 
                   onChange={(e) => setValue(e.target.value)} 
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none" 
+                  className="w-full rounded-xl border-2 border-slate-200 bg-white px-4 py-3 text-sm font-medium focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all"
                 />
               </div>
               
               <div>
-                <label className="mb-1 block text-xs font-medium">Note (optional)</label>
+                <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-600">Note (optional)</label>
                 <textarea 
                   value={note} 
                   onChange={(e) => setNote(e.target.value)} 
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none" 
+                  className="w-full rounded-xl border-2 border-slate-200 bg-white px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all resize-none"
                   rows={3}
                   placeholder="Add clinical note about the resolution..."
                 />
@@ -183,7 +205,7 @@ export function ConflictsPanel({ record, onResolve }: Props) {
             <div className="mt-6 flex justify-end gap-3">
               <button 
                 onClick={() => setSelectedConflict(null)} 
-                className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                className="btn-secondary"
               >
                 Cancel
               </button>
@@ -194,7 +216,7 @@ export function ConflictsPanel({ record, onResolve }: Props) {
                   setValue('');
                   setNote('');
                 }} 
-                className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+                className="btn-primary"
               >
                 Save Resolution
               </button>
