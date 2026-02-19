@@ -2,10 +2,12 @@ import { CanonicalRecord } from '@/lib/types';
 
 export function CanonicalSummary({ record }: { record: CanonicalRecord | null }) {
   if (!record) return (
-    <section className="card">
-      <div className="rounded-lg bg-slate-50 p-6 text-center">
-        <span className="mb-2 block text-4xl">👤</span>
-        <p className="text-sm text-slate-500">Run translation to generate canonical patient summary.</p>
+    <section className="card-gradient">
+      <div className="rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 p-8 text-center">
+        <div className="mb-4 inline-flex rounded-2xl bg-white p-4 shadow-md">
+          <span className="text-4xl">👤</span>
+        </div>
+        <p className="text-sm font-medium text-slate-500">Run translation to generate canonical patient summary.</p>
       </div>
     </section>
   );
@@ -19,82 +21,93 @@ export function CanonicalSummary({ record }: { record: CanonicalRecord | null })
   const uniqueMeds = record.medications.map((m) => `${m.canonicalName} (${m.dose})`).filter((v, i, a) => a.indexOf(v) === i);
 
   return (
-    <section className="card">
-      <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-lg font-semibold">👤 Unified Patient Profile</h3>
-        <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-700">
+    <section className="card-gradient animate-fadeIn">
+      <div className="mb-5 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="rounded-xl bg-gradient-to-br from-emerald-100 to-teal-100 p-2 shadow-inner">
+            <span className="text-xl">👤</span>
+          </div>
+          <h3 className="text-xl font-bold text-gradient">Unified Patient Profile</h3>
+        </div>
+        <span className="badge-green">
           ✅ Normalized
         </span>
       </div>
       
       {/* Patient Demographics Card */}
-      <div className="mb-4 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 p-4">
-        <div className="grid grid-cols-2 gap-3 text-sm">
-          <div>
-            <p className="text-xs text-slate-500">Patient Name</p>
-            <p className="font-semibold text-slate-800">{record.patient.demographics.fullName}</p>
+      <div className="mb-5 overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-5 shadow-lg shadow-blue-100/50">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="rounded-xl bg-white/60 p-4 backdrop-blur-sm">
+            <p className="mb-1 text-xs font-semibold text-slate-500 uppercase tracking-wide">Patient Name</p>
+            <p className="text-base font-bold text-slate-800">{record.patient.demographics.fullName}</p>
           </div>
-          <div>
-            <p className="text-xs text-slate-500">Date of Birth</p>
-            <p className="font-semibold text-slate-800">{record.patient.demographics.dob}</p>
+          <div className="rounded-xl bg-white/60 p-4 backdrop-blur-sm">
+            <p className="mb-1 text-xs font-semibold text-slate-500 uppercase tracking-wide">Date of Birth</p>
+            <p className="text-base font-bold text-slate-800">{record.patient.demographics.dob}</p>
           </div>
-          <div>
-            <p className="text-xs text-slate-500">Identifiers</p>
-            <p className="font-mono text-sm text-slate-800">{record.patient.identifiers.join(', ')}</p>
+          <div className="rounded-xl bg-white/60 p-4 backdrop-blur-sm">
+            <p className="mb-1 text-xs font-semibold text-slate-500 uppercase tracking-wide">Identifiers</p>
+            <p className="text-sm font-mono font-bold text-slate-800">{record.patient.identifiers.join(', ')}</p>
           </div>
-          <div>
-            <p className="text-xs text-slate-500">Language</p>
-            <p className="font-semibold text-slate-800">{record.patient.demographics.language === 'id' ? 'Bahasa Indonesia' : record.patient.demographics.language}</p>
+          <div className="rounded-xl bg-white/60 p-4 backdrop-blur-sm">
+            <p className="mb-1 text-xs font-semibold text-slate-500 uppercase tracking-wide">Language</p>
+            <p className="text-base font-bold text-slate-800">{record.patient.demographics.language === 'id' ? 'Bahasa Indonesia' : record.patient.demographics.language}</p>
           </div>
         </div>
       </div>
 
       {/* Clinical Summary */}
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {/* Allergies */}
-        <div className="rounded-lg border border-rose-200 bg-rose-50 p-3">
-          <div className="mb-2 flex items-center gap-1">
-            <span>⚠️</span>
-            <p className="font-semibold text-rose-800">Allergies</p>
+        <div className="card hover-lift group bg-gradient-to-br from-rose-50 to-pink-50 border-rose-200/60">
+          <div className="mb-3 flex items-center gap-2">
+            <div className="rounded-xl bg-white p-2 shadow-sm transition-transform duration-300 group-hover:scale-110">
+              <span className="text-lg">⚠️</span>
+            </div>
+            <p className="font-bold text-rose-800">Allergies</p>
           </div>
-          <div className="flex flex-wrap gap-1">
+          <div className="flex flex-wrap gap-2">
             {uniqueAllergies.length > 0 ? uniqueAllergies.map((a, i) => (
-              <span key={i} className="rounded-full bg-rose-200 px-2 py-0.5 text-xs font-medium text-rose-800">
+              <span key={i} className="rounded-full bg-gradient-to-r from-rose-200 to-pink-200 px-3 py-1 text-xs font-bold text-rose-800 shadow-sm">
                 {a}
               </span>
             )) : (
-              <span className="text-xs text-rose-600">None captured</span>
+              <span className="text-sm text-rose-600">None captured</span>
             )}
           </div>
         </div>
 
         {/* Medications */}
-        <div className="rounded-lg border border-blue-200 bg-blue-50 p-3">
-          <div className="mb-2 flex items-center gap-1">
-            <span>💊</span>
-            <p className="font-semibold text-blue-800">Active Medications</p>
+        <div className="card hover-lift group bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200/60">
+          <div className="mb-3 flex items-center gap-2">
+            <div className="rounded-xl bg-white p-2 shadow-sm transition-transform duration-300 group-hover:scale-110">
+              <span className="text-lg">💊</span>
+            </div>
+            <p className="font-bold text-blue-800">Active Medications</p>
           </div>
-          <div className="space-y-1">
+          <div className="space-y-2">
             {uniqueMeds.slice(0, 3).map((m, i) => (
-              <p key={i} className="text-xs text-blue-800">{m}</p>
+              <p key={i} className="rounded-lg bg-white/60 px-3 py-2 text-sm font-medium text-blue-800 backdrop-blur-sm">{m}</p>
             ))}
             {uniqueMeds.length > 3 && (
-              <p className="text-xs text-blue-600">+{uniqueMeds.length - 3} more</p>
+              <p className="text-sm font-semibold text-blue-600">+{uniqueMeds.length - 3} more</p>
             )}
           </div>
         </div>
 
         {/* Conditions */}
-        <div className="rounded-lg border border-purple-200 bg-purple-50 p-3">
-          <div className="mb-2 flex items-center gap-1">
-            <span>🩺</span>
-            <p className="font-semibold text-purple-800">Key Conditions</p>
+        <div className="card hover-lift group bg-gradient-to-br from-purple-50 to-violet-50 border-purple-200/60">
+          <div className="mb-3 flex items-center gap-2">
+            <div className="rounded-xl bg-white p-2 shadow-sm transition-transform duration-300 group-hover:scale-110">
+              <span className="text-lg">🩺</span>
+            </div>
+            <p className="font-bold text-purple-800">Key Conditions</p>
           </div>
-          <div className="space-y-1">
+          <div className="space-y-2">
             {keyConditions ? keyConditions.split(', ').slice(0, 3).map((c, i) => (
-              <p key={i} className="text-xs text-purple-800">{c}</p>
+              <p key={i} className="rounded-lg bg-white/60 px-3 py-2 text-sm font-medium text-purple-800 backdrop-blur-sm">{c}</p>
             )) : (
-              <p className="text-xs text-purple-600">None captured</p>
+              <p className="text-sm text-purple-600">None captured</p>
             )}
           </div>
         </div>

@@ -33,19 +33,32 @@ export default function DemoPage() {
   const diagnosisEntities = useMemo(() => record?.conditions ?? [], [record]);
 
   return (
-    <div className="space-y-6">
-      <div className="card bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">🩺 Schema-less EHR/SIMRS Translator Demo</h1>
-            <p className="mt-1 text-blue-100">Feature Tour: mapping • timeline • conflicts • provenance • export</p>
-          </div>
-          <div className="hidden flex-wrap gap-2 md:flex">
-            {(['mapping', 'timeline', 'conflicts', 'provenance', 'export'] as const).map((f) => (
-              <a key={f} href={`#${f}`} className="rounded-full bg-white/20 px-3 py-1 text-xs font-medium text-white hover:bg-white/30">
-                #{f}
-              </a>
-            ))}
+    <div className="space-y-8">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 p-8 text-white shadow-2xl animate-gradient">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtOS45NDEgMC0xOCA4LjA1OS0xOCAxOHM4LjA1OSAxOCAxOCAxOCAxOC04LjA1OSAxOC0xOC04LjA1OS0xOC0xOC0xOHptMCAzMmMtNy43MzIgMC0xNC02LjI2OC0xNC0xNHM2LjI2OC0xNCAxNC0xNCAxNCA2LjI2OCAxNCAxNC02LjI2OCAxNC0xNCAxNHoiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjA1Ii8+PC9nPjwvc3ZnPg==')] opacity-20"></div>
+        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl animate-pulse-glow"></div>
+        
+        <div className="relative z-10">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="animate-slideInLeft">
+              <h1 className="text-3xl font-extrabold md:text-4xl">
+                🩺 Schema-less EHR/SIMRS Translator
+              </h1>
+              <p className="mt-2 text-lg text-blue-100">
+                Feature Tour: mapping • timeline • conflicts • provenance • export
+              </p>
+            </div>
+            <div className="hidden flex-wrap gap-2 md:flex animate-slideInRight">
+              {(['mapping', 'timeline', 'conflicts', 'provenance', 'export'] as const).map((f) => (
+                <a 
+                  key={f} 
+                  href={`#${f}`} 
+                  className="group rounded-full bg-white/20 px-4 py-2 text-xs font-medium text-white backdrop-blur-sm transition-all hover:bg-white/30 hover:scale-105"
+                >
+                  #{f}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -64,32 +77,47 @@ export default function DemoPage() {
           <CanonicalSummary record={record} />
           <MappingTable record={record} showProvenance={showProvenance} />
 
-          <section className="card">
-            <div className="mb-3 flex items-center gap-2">
-              <h3 className="text-lg font-semibold">🩺 Diagnosis Normalization</h3>
-              <span className="rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-700">
+          <section className="card-gradient">
+            <div className="mb-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="rounded-xl bg-gradient-to-br from-indigo-100 to-purple-100 p-2 shadow-inner">
+                  <span className="text-xl">🩺</span>
+                </div>
+                <h3 className="text-xl font-bold text-gradient">Diagnosis Normalization</h3>
+              </div>
+              <span className="badge-purple">
                 {diagnosisEntities.length} diagnoses
               </span>
             </div>
-            <p className="mb-3 text-sm text-slate-600">Extracted entities from ICD and free-text (e.g., diabetes, kencing manis) are normalized to canonical conditions.</p>
-            {!record ? <p className="rounded-lg bg-slate-50 p-4 text-center text-sm text-slate-500">No diagnosis extraction yet.</p> : (
-              <div className="space-y-2">
-                {diagnosisEntities.map((d) => (
-                  <div key={d.id} className="rounded-lg border border-slate-200 bg-slate-50 p-3">
-                    <div className="flex items-center justify-between">
-                      <p className="font-semibold text-slate-800">{d.canonicalName}</p>
-                      {d.code && (
-                        <span className="rounded bg-blue-100 px-2 py-0.5 text-xs font-mono text-blue-700">
-                          {d.code}
-                        </span>
-                      )}
+            <p className="mb-4 text-sm text-slate-600 leading-relaxed">Extracted entities from ICD and free-text (e.g., diabetes, kencing manis) are normalized to canonical conditions.</p>
+            {!record ? (
+              <div className="rounded-2xl bg-slate-50 p-6 text-center">
+                <span className="mb-2 block text-4xl opacity-50">📋</span>
+                <p className="text-sm text-slate-500">No diagnosis extraction yet.</p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {diagnosisEntities.map((d, i) => (
+                  <div 
+                    key={d.id} 
+                    className={`card stagger-${(i % 5) + 1} animate-fadeIn bg-gradient-to-br from-white to-indigo-50/30`}
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <p className="text-lg font-bold text-slate-800">{d.canonicalName}</p>
+                        <p className="mt-1 text-sm text-slate-600">Source entity: "{d.sourceText}"</p>
+                        <div className="mt-2 flex items-center gap-2">
+                          {d.code && (
+                            <span className="rounded-lg bg-gradient-to-r from-blue-100 to-indigo-100 px-3 py-1 text-xs font-mono font-bold text-blue-700 shadow-sm">
+                              {d.code}
+                            </span>
+                          )}
+                          <span className={`rounded-full px-3 py-1 text-xs font-bold ${d.confidence >= 0.75 ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
+                            {d.confidence >= 0.75 ? '✓' : '!'} {Math.round(d.confidence * 100)}%
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <p className="mt-1 text-xs text-slate-600">Source entity: "{d.sourceText}"</p>
-                    <p className="mt-1 text-xs">
-                      <span className={`font-medium ${d.confidence >= 0.75 ? 'text-emerald-600' : 'text-amber-600'}`}>
-                        Confidence: {Math.round(d.confidence * 100)}%
-                      </span>
-                    </p>
                   </div>
                 ))}
               </div>
@@ -104,18 +132,28 @@ export default function DemoPage() {
             }}
           />
 
-          <section id="provenance" className="card">
-            <h3 className="mb-3 text-lg font-semibold">📋 Provenance & Trust</h3>
-            <label className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-slate-100 px-4 py-2 text-sm">
-              <input 
-                type="checkbox" 
-                checked={showProvenance} 
-                onChange={(e) => setShowProvenance(e.target.checked)} 
-                className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
-              />
-              <span>Show provenance inline</span>
+          <section id="provenance" className="card-gradient">
+            <div className="mb-4 flex items-center gap-3">
+              <div className="rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100 p-2 shadow-inner">
+                <span className="text-xl">📋</span>
+              </div>
+              <h3 className="text-xl font-bold text-gradient">Provenance & Trust</h3>
+            </div>
+            <label className="group inline-flex cursor-pointer items-center gap-3 rounded-2xl bg-gradient-to-r from-slate-50 to-slate-100 px-5 py-3 text-sm transition-all hover:shadow-md hover:from-blue-50 hover:to-indigo-50">
+              <div className="relative">
+                <input 
+                  type="checkbox" 
+                  checked={showProvenance} 
+                  onChange={(e) => setShowProvenance(e.target.checked)} 
+                  className="peer h-5 w-5 cursor-pointer appearance-none rounded-lg border-2 border-slate-300 bg-white transition-all checked:border-blue-500 checked:bg-blue-500 hover:border-blue-400"
+                />
+                <svg className="pointer-events-none absolute inset-0 m-auto h-3 w-3 text-white opacity-0 transition-opacity peer-checked:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="4">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <span className="font-medium text-slate-700">Show provenance inline</span>
             </label>
-            <p className="mt-3 text-xs text-slate-500">When enabled, source system, timestamp, and confidence appear across mappings/timeline to support traceability. Every datapoint can be traced back to its origin.</p>
+            <p className="mt-4 text-sm text-slate-600 leading-relaxed">When enabled, source system, timestamp, and confidence appear across mappings/timeline to support traceability. Every datapoint can be traced back to its origin.</p>
           </section>
 
           <Timeline record={record} showProvenance={showProvenance} />

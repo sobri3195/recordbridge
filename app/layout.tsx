@@ -17,32 +17,36 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="id">
       <body>
-        <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-lg shadow-sm">
+        <header className="sticky top-0 z-50 border-b border-slate-200/60 bg-white/80 backdrop-blur-xl shadow-lg shadow-slate-200/50">
           <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-            <Link href="/" className="group flex items-center gap-2">
-              <Logo size="sm" variant="full" className="group-hover:opacity-90 transition-opacity" />
-              <span className="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">Demo</span>
-            </Link>
-            <div className="hidden gap-6 md:flex">
-              <Link href="/" className="flex items-center gap-1 text-slate-600 hover:text-blue-600 transition-colors">
-                <span>🏠</span>
-                Home
-              </Link>
-              <Link href="/features" className="flex items-center gap-1 text-slate-600 hover:text-blue-600 transition-colors">
-                <span>🚀</span>
-                Core Features
-              </Link>
-              <Link href="/demo" className="flex items-center gap-1 text-slate-600 hover:text-blue-600 transition-colors">
-                <span>🧪</span>
+            <Link href="/" className="group flex items-center gap-3">
+              <div className="relative">
+                <Logo size="sm" variant="full" className="transition-opacity duration-300 group-hover:opacity-90" />
+                <div className="absolute inset-0 rounded-full bg-blue-500/20 blur-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+              </div>
+              <span className="hidden rounded-full bg-gradient-to-r from-blue-100 to-indigo-100 px-3 py-1 text-xs font-bold text-blue-700 md:inline-block shadow-sm">
                 Demo
-              </Link>
-              <Link href="/how-it-works" className="flex items-center gap-1 text-slate-600 hover:text-blue-600 transition-colors">
-                <span>📖</span>
-                How it works
-              </Link>
+              </span>
+            </Link>
+            <div className="hidden gap-2 md:flex">
+              {[
+                { href: '/', icon: '🏠', label: 'Home' },
+                { href: '/features', icon: '🚀', label: 'Core Features' },
+                { href: '/demo', icon: '🧪', label: 'Demo' },
+                { href: '/how-it-works', icon: '📖', label: 'How it works' }
+              ].map((item) => (
+                <Link 
+                  key={item.href} 
+                  href={item.href}
+                  className="group flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-slate-600 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-600 hover:shadow-md"
+                >
+                  <span className="transition-transform duration-300 group-hover:scale-110">{item.icon}</span>
+                  <span>{item.label}</span>
+                </Link>
+              ))}
             </div>
             <div className="flex gap-2 md:hidden">
-              <Link href="/demo" className="rounded-lg bg-blue-600 px-3 py-1.5 text-sm font-medium text-white">
+              <Link href="/demo" className="btn-primary px-4 py-2 text-sm">
                 Demo
               </Link>
             </div>
@@ -51,49 +55,95 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="mx-auto max-w-7xl px-6 py-8">
           {children}
         </main>
-        <footer className="mt-16 border-t border-slate-200 bg-slate-50">
-          <div className="mx-auto max-w-7xl px-6 py-8">
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-              <div>
-                <div className="flex items-center gap-2">
+        <footer className="mt-16 border-t border-slate-200/60 bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
+          <div className="mx-auto max-w-7xl px-6 py-12">
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
                   <Logo size="sm" variant="full" />
                 </div>
-                <p className="mt-2 text-sm text-slate-600">
+                <p className="text-sm text-slate-600 leading-relaxed">
                   Schema-less EHR/SIMRS translator untuk integritas data kesehatan Indonesia.
                 </p>
+                <div className="flex gap-2">
+                  <div className="h-2 w-2 rounded-full bg-blue-500 animate-pulse"></div>
+                  <div className="h-2 w-2 rounded-full bg-indigo-500 animate-pulse" style={{animationDelay: '0.2s'}}></div>
+                  <div className="h-2 w-2 rounded-full bg-purple-500 animate-pulse" style={{animationDelay: '0.4s'}}></div>
+                </div>
               </div>
               <div>
-                <h4 className="font-semibold text-slate-800">Core Features</h4>
-                <ul className="mt-2 space-y-1 text-sm text-slate-600">
-                  <li>• Auto-Connector Engine</li>
-                  <li>• AI Mapping Engine</li>
-                  <li>• Health Standardization</li>
-                  <li>• Real-Time Sync</li>
-                  <li>• API Gateway</li>
+                <h4 className="mb-4 font-bold text-slate-800">Core Features</h4>
+                <ul className="space-y-2 text-sm text-slate-600">
+                  <li className="flex items-center gap-2 transition-colors hover:text-blue-600">
+                    <span className="text-blue-500">•</span>
+                    Auto-Connector Engine
+                  </li>
+                  <li className="flex items-center gap-2 transition-colors hover:text-blue-600">
+                    <span className="text-blue-500">•</span>
+                    AI Mapping Engine
+                  </li>
+                  <li className="flex items-center gap-2 transition-colors hover:text-blue-600">
+                    <span className="text-blue-500">•</span>
+                    Health Standardization
+                  </li>
+                  <li className="flex items-center gap-2 transition-colors hover:text-blue-600">
+                    <span className="text-blue-500">•</span>
+                    Real-Time Sync
+                  </li>
+                  <li className="flex items-center gap-2 transition-colors hover:text-blue-600">
+                    <span className="text-blue-500">•</span>
+                    API Gateway
+                  </li>
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-slate-800">Integrations</h4>
-                <ul className="mt-2 space-y-1 text-sm text-slate-600">
-                  <li>• SATUSEHAT</li>
-                  <li>• BPJS Kesehatan</li>
-                  <li>• SIMRS Lokal</li>
-                  <li>• Excel/CSV</li>
+                <h4 className="mb-4 font-bold text-slate-800">Integrations</h4>
+                <ul className="space-y-2 text-sm text-slate-600">
+                  <li className="flex items-center gap-2 transition-colors hover:text-blue-600">
+                    <span className="text-emerald-500">•</span>
+                    SATUSEHAT
+                  </li>
+                  <li className="flex items-center gap-2 transition-colors hover:text-blue-600">
+                    <span className="text-emerald-500">•</span>
+                    BPJS Kesehatan
+                  </li>
+                  <li className="flex items-center gap-2 transition-colors hover:text-blue-600">
+                    <span className="text-emerald-500">•</span>
+                    SIMRS Lokal
+                  </li>
+                  <li className="flex items-center gap-2 transition-colors hover:text-blue-600">
+                    <span className="text-emerald-500">•</span>
+                    Excel/CSV
+                  </li>
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-slate-800">Use Cases</h4>
-                <ul className="mt-2 space-y-1 text-sm text-slate-600">
-                  <li>• Military Healthcare</li>
-                  <li>• Hospital Networks</li>
-                  <li>• Clinic Referrals</li>
-                  <li>• Multi-facility Care</li>
+                <h4 className="mb-4 font-bold text-slate-800">Use Cases</h4>
+                <ul className="space-y-2 text-sm text-slate-600">
+                  <li className="flex items-center gap-2 transition-colors hover:text-blue-600">
+                    <span className="text-purple-500">•</span>
+                    Military Healthcare
+                  </li>
+                  <li className="flex items-center gap-2 transition-colors hover:text-blue-600">
+                    <span className="text-purple-500">•</span>
+                    Hospital Networks
+                  </li>
+                  <li className="flex items-center gap-2 transition-colors hover:text-blue-600">
+                    <span className="text-purple-500">•</span>
+                    Clinic Referrals
+                  </li>
+                  <li className="flex items-center gap-2 transition-colors hover:text-blue-600">
+                    <span className="text-purple-500">•</span>
+                    Multi-facility Care
+                  </li>
                 </ul>
               </div>
             </div>
-            <div className="mt-8 border-t border-slate-200 pt-4 text-center text-sm text-slate-500">
-              <p>© 2026 RecordBridge Demo - Healthcare Interoperability for Indonesia</p>
-              <p className="mt-1">⚠️ Demo purposes only - Not for production use</p>
+            <div className="mt-10 border-t border-slate-200 pt-6 text-center">
+              <p className="text-sm text-slate-600">
+                © 2026 RecordBridge Demo - <span className="font-semibold text-blue-600">Healthcare Interoperability for Indonesia</span>
+              </p>
+              <p className="mt-2 text-xs text-slate-500">⚠️ Demo purposes only - Not for production use</p>
             </div>
           </div>
         </footer>
