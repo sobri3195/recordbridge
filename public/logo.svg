@@ -1,12 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
-  <!-- Icon: blue circle with medical cross -->
-  <circle cx="24" cy="24" r="22" fill="#2563EB"/>
-  <rect x="19" y="10" width="10" height="28" rx="2.5" fill="white"/>
-  <rect x="10" y="19" width="28" height="10" rx="2.5" fill="white"/>
-  <!-- Bridge arc above cross -->
-  <path d="M14 19 Q24 8 34 19" stroke="#93C5FD" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 92" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d8ecfb"/>
+      <stop offset="100%" stop-color="#f4f9ff"/>
+    </linearGradient>
+    <linearGradient id="arch" x1="58" y1="5" x2="222" y2="5" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2d63c8"/>
+      <stop offset="100%" stop-color="#2aa7c9"/>
+    </linearGradient>
+    <linearGradient id="deck" x1="65" y1="43" x2="215" y2="43" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#239bc4"/>
+      <stop offset="100%" stop-color="#2f66cd"/>
+    </linearGradient>
+  </defs>
 
-  <!-- Wordmark -->
-  <text x="54" y="30" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-weight="700" font-size="20" fill="#1E3A5F">Record</text>
-  <text x="121" y="30" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-weight="700" font-size="20" fill="#2563EB">Bridge</text>
+  <rect width="280" height="92" rx="3" fill="url(#bg)"/>
+
+  <path d="M58 42 C95 5 185 5 222 42" stroke="url(#arch)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M70 42 L210 42 L202 53 L78 53 Z" fill="url(#deck)"/>
+
+  <rect x="102" y="25" width="12" height="28" fill="#27b2b6"/>
+  <rect x="118" y="20" width="12" height="33" fill="#27b2b6"/>
+  <rect x="146" y="16" width="16" height="25" fill="#ffffff"/>
+  <rect x="166" y="22" width="12" height="31" fill="#2f66cd"/>
+
+  <path d="M84 53 L84 42" stroke="#ffffff" stroke-opacity="0.8"/>
+  <path d="M94 53 L94 42" stroke="#ffffff" stroke-opacity="0.8"/>
+  <path d="M196 53 L196 42" stroke="#ffffff" stroke-opacity="0.8"/>
+  <path d="M206 53 L206 42" stroke="#ffffff" stroke-opacity="0.8"/>
+
+  <text x="44" y="84" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700" fill="#1f3358">RecordBridge</text>
 </svg>
