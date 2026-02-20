@@ -22,12 +22,47 @@ export default function DemoPage() {
     setSelectedSources((prev) => prev.includes(source) ? prev.filter((s) => s !== source) : [...prev, source]);
   };
 
+  const selectAllSources = () => {
+    setSelectedSources(['EHR_A', 'SIMRS_B', 'CLINIC_C']);
+  };
+
+  const clearSources = () => {
+    setSelectedSources([]);
+  };
+
   const run = () => {
+    if (selectedSources.length === 0) return;
     setLoading(true);
     setTimeout(() => {
       setRecord(runTranslation(selectedSources));
       setLoading(false);
     }, 500);
+  };
+
+  const activateAllFeatures = () => {
+    const allSources: SourceSystem[] = ['EHR_A', 'SIMRS_B', 'CLINIC_C'];
+    setSelectedSources(allSources);
+    setShowProvenance(true);
+    setLoading(true);
+    setTimeout(() => {
+      setRecord(runTranslation(allSources));
+      setLoading(false);
+    }, 500);
+  };
+
+  const autoResolveConflicts = () => {
+    if (!record) return;
+    const unresolved = record.conflicts.filter((c) => !c.resolved);
+    if (unresolved.length === 0) return;
+
+    const updated = unresolved.reduce((acc, conflict) => {
+      const bestValue = conflict.values.reduce((best, current) =>
+        current.confidence > best.confidence ? current : best
+      );
+      return resolveConflict(acc, conflict.id, 'choose_one', bestValue.value, 'Auto-resolved by highest confidence.');
+    }, record);
+
+    setRecord(updated);
   };
 
   const diagnosisEntities = useMemo(() => record?.conditions ?? [], [record]);
@@ -69,6 +104,8 @@ export default function DemoPage() {
           setActiveTab={setActiveTab}
           selectedSources={selectedSources}
           onToggleSource={toggleSource}
+          onSelectAllSources={selectAllSources}
+          onClearSources={clearSources}
           onRun={run}
           loading={loading}
         />
@@ -154,6 +191,24 @@ export default function DemoPage() {
               <span className="font-medium text-slate-700">Show provenance inline</span>
             </label>
             <p className="mt-4 text-sm text-slate-600 leading-relaxed">When enabled, source system, timestamp, and confidence appear across mappings/timeline to support traceability. Every datapoint can be traced back to its origin.</p>
+          </section>
+
+          <section className="card-gradient">
+            <div className="mb-4 flex items-center gap-3">
+              <div className="rounded-xl bg-gradient-to-br from-emerald-100 to-cyan-100 p-2 shadow-inner">
+                <span className="text-xl">⚙️</span>
+              </div>
+              <h3 className="text-xl font-bold text-gradient">Feature Activation Center</h3>
+            </div>
+            <p className="mb-4 text-sm text-slate-600">Aktifkan seluruh alur demo secara cepat: pilih semua sumber, jalankan translasi, tampilkan provenance, dan selesaikan konflik otomatis.</p>
+            <div className="grid gap-2 sm:grid-cols-2">
+              <button onClick={activateAllFeatures} className="btn-primary">
+                🚀 Activate all features
+              </button>
+              <button onClick={autoResolveConflicts} disabled={!record} className="btn-secondary disabled:cursor-not-allowed disabled:opacity-60">
+                ✅ Auto-resolve all conflicts
+              </button>
+            </div>
           </section>
 
           <Timeline record={record} showProvenance={showProvenance} />
