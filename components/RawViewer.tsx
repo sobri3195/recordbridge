@@ -8,6 +8,8 @@ interface Props {
   setActiveTab: (tab: SourceSystem) => void;
   selectedSources: SourceSystem[];
   onToggleSource: (source: SourceSystem) => void;
+  onSelectAllSources: () => void;
+  onClearSources: () => void;
   onRun: () => void;
   loading: boolean;
 }
@@ -24,7 +26,16 @@ const sourceColors: Record<SourceSystem, string> = {
   CLINIC_C: 'border-purple-200 bg-purple-50 text-purple-800'
 };
 
-export function RawViewer({ activeTab, setActiveTab, selectedSources, onToggleSource, onRun, loading }: Props) {
+export function RawViewer({
+  activeTab,
+  setActiveTab,
+  selectedSources,
+  onToggleSource,
+  onSelectAllSources,
+  onClearSources,
+  onRun,
+  loading
+}: Props) {
   const source = RAW_SOURCES.find((s) => s.source === activeTab) ?? RAW_SOURCES[0];
 
   return (
@@ -60,7 +71,17 @@ export function RawViewer({ activeTab, setActiveTab, selectedSources, onToggleSo
       </div>
 
       <div className="mb-4 rounded-lg border border-slate-200 bg-slate-50 p-3">
-        <p className="mb-3 text-sm font-medium text-slate-700">Choose data sources to merge:</p>
+        <div className="mb-3 flex items-center justify-between gap-2">
+          <p className="text-sm font-medium text-slate-700">Choose data sources to merge:</p>
+          <div className="flex gap-2">
+            <button onClick={onSelectAllSources} className="rounded-md bg-white px-2 py-1 text-xs font-medium text-slate-700 hover:bg-slate-100">
+              Select all
+            </button>
+            <button onClick={onClearSources} className="rounded-md bg-white px-2 py-1 text-xs font-medium text-slate-700 hover:bg-slate-100">
+              Clear
+            </button>
+          </div>
+        </div>
         <div className="flex flex-wrap gap-3">
           {(Object.keys(SOURCE_LABELS) as SourceSystem[]).map((src) => (
             <label key={src} className={`flex cursor-pointer items-center gap-2 rounded-lg border-2 px-3 py-2 text-sm transition-all ${selectedSources.includes(src) ? sourceColors[src] : 'border-slate-200 bg-white hover:border-slate-300'}`}>
@@ -91,8 +112,8 @@ export function RawViewer({ activeTab, setActiveTab, selectedSources, onToggleSo
 
       <button
         onClick={onRun}
-        disabled={loading}
-        className={`mt-4 w-full rounded-lg px-4 py-3 text-sm font-semibold transition-all ${loading ? 'bg-slate-400 cursor-not-allowed' : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700'} text-white shadow-lg hover:shadow-xl`}
+        disabled={loading || selectedSources.length === 0}
+        className={`mt-4 w-full rounded-lg px-4 py-3 text-sm font-semibold transition-all ${(loading || selectedSources.length === 0) ? 'bg-slate-400 cursor-not-allowed' : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700'} text-white shadow-lg hover:shadow-xl`}
       >
         {loading ? (
           <div className="flex items-center justify-center gap-2">
